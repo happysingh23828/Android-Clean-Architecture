@@ -1,3 +1,4 @@
 rootProject.name='Android Clean Architecture'
 include ':app'
 include ':buildSrc'
+include ':domain'

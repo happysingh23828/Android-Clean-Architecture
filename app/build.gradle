@@ -20,6 +20,7 @@ android {
         versionCode Version.versionCode
         versionName Version.name
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        buildConfigField "String", "TMDB_API_KEY", "\"${getProperty("local.properties", "tmdb_api_key")}\""
     }
 
     androidExtensions {
@@ -66,4 +67,19 @@ static def buildTimeStamp() {
     def df = new SimpleDateFormat("ddMMM_hh.mma")
     df.setTimeZone(TimeZone.getTimeZone("IST"))
     return df.format(new Date())
+}
+
+def getProperty(String filename, String propName) {
+    def propsFile = rootProject.file(filename)
+    if (propsFile.exists()) {
+        def props = new Properties()
+        props.load(new FileInputStream(propsFile))
+        if (props[propName] != null) {
+            return props[propName]
+        } else {
+            print("No such property " + propName + " in file " + filename)
+        }
+    } else {
+        print(filename + " does not exist!")
+    }
 }

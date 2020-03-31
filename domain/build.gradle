@@ -1,0 +1,14 @@
+import dependencies.Dependencies
+
+apply plugin: 'java-library'
+apply plugin: 'kotlin'
+// Applying dependencies from dependencies.gradle
+apply from: Dependencies.dependency
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation Dependencies.Kotlin.kotlin_stdlib_jdk7
+}
+
+sourceCompatibility = "8"
+targetCompatibility = "8"

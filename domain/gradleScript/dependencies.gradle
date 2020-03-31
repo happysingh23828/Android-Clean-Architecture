@@ -1,0 +1,8 @@
+import dependencies.Dependencies
+
+dependencies {
+    //RxJava
+    implementation Dependencies.RxJava.rxAndroid
+    implementation Dependencies.RxJava.rxjava2
+    implementation Dependencies.RxJava.rxBinding
+}
