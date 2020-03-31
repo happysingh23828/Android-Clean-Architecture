@@ -1,0 +1,14 @@
+import dependencies.Dependencies
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    implementation Dependencies.Kotlin.kotlin_stdlib_jdk7
+
+    testImplementation Dependencies.Test.test_junit
+    androidTestImplementation Dependencies.Test.android_test_espresso_core
+    androidTestImplementation Dependencies.Test.android_test_rules
+    androidTestImplementation Dependencies.Test.android_test_runner
+
+    //recyclerView Adapter
+}

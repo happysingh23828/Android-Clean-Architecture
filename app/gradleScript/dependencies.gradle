@@ -1,0 +1,51 @@
+import dependencies.Dependencies
+
+apply from: Dependencies.common
+
+dependencies {
+
+    //App Module
+//    implementation project(Dependencies.Module.domain)
+//    implementation project(Dependencies.Module.cache)
+//    implementation project(Dependencies.Module.data)
+//    implementation project(Dependencies.Module.remote)
+
+    //Android X
+    implementation Dependencies.AndroidX.appcompat
+    implementation Dependencies.AndroidX.materialDesign
+    implementation Dependencies.AndroidX.constraintlayout
+    implementation Dependencies.AndroidX.vectordrawable
+    implementation Dependencies.AndroidX.core
+
+    //RxJava
+    implementation Dependencies.RxJava.rxAndroid
+    implementation Dependencies.RxJava.rxjava2
+    implementation Dependencies.RxJava.rxBinding
+
+    //Dagger2
+    implementation Dependencies.Dagger.dagger2
+    implementation Dependencies.Dagger.daggerAndroid
+    implementation Dependencies.Dagger.daggerAndroidSupport
+    kapt Dependencies.Dagger.processor
+    kapt Dependencies.Dagger.compiler
+
+
+    //LifeCycle
+    implementation Dependencies.Lifecycle.lifeCycleExtension
+
+    //Facebook
+    implementation Dependencies.Facebook.stetho
+
+    //Support
+    implementation Dependencies.Support.supportV4
+
+    //Retrofit
+    api Dependencies.Retrofit2.retrofit
+    api Dependencies.Retrofit2.converterGson
+    api Dependencies.Retrofit2.adapterRxjava2
+
+    //Glide
+    implementation Dependencies.Glide.glide
+    kapt Dependencies.Glide.annotationProcessor
+    kapt Dependencies.Glide.annotationCompiler
+}

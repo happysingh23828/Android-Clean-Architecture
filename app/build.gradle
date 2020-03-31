@@ -1,6 +1,13 @@
+import dependencies.Dependencies
+import dependencies.Version
+import java.text.SimpleDateFormat
+
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: "kotlin-kapt"
+// Applying dependencies from dependencies.gradle
+apply from: Dependencies.dependency
 
 android {
     compileSdkVersion 29
@@ -8,13 +15,44 @@ android {
 
     defaultConfig {
         applicationId "com.androchef.cleanarc"
-        minSdkVersion 21
-        targetSdkVersion 29
-        versionCode 1
-        versionName "1.0"
-
+        minSdkVersion Version.minSdk
+        targetSdkVersion Version.targetSdk
+        versionCode Version.versionCode
+        versionName Version.name
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
+
+    androidExtensions {
+        experimental = true
+    }
+
+    //Customized APK name
+    android {
+        applicationVariants.all { variant ->
+            variant.outputs.all {
+                outputFileName =
+                        "CleanArc-${variant.versionName}-${variant.versionCode}-${buildTimeStamp()}-${variant.name}.apk"
+            }
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    dataBinding {
+        enabled true
+    }
+
+    kapt {
+        generateStubs = true
+    }
+
+    testOptions {
+        unitTests.returnDefaultValues = true
+    }
+
 
     buildTypes {
         release {
@@ -22,16 +60,10 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
-
 }
 
-dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    implementation 'androidx.appcompat:appcompat:1.1.0'
-    implementation 'androidx.core:core-ktx:1.2.0'
-    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+static def buildTimeStamp() {
+    def df = new SimpleDateFormat("ddMMM_hh.mma")
+    df.setTimeZone(TimeZone.getTimeZone("IST"))
+    return df.format(new Date())
 }
