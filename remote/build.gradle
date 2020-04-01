@@ -1,0 +1,11 @@
+import dependencies.Dependencies
+import dependencies.Version
+apply plugin: 'java-library'
+apply plugin: 'kotlin'
+// Applying dependencies from dependencies.gradle
+apply from: Dependencies.dependency
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation Dependencies.Kotlin.kotlin_stdlib_jdk7
+}
