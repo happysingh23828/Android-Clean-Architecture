@@ -10,7 +10,7 @@ import java.util.concurrent.TimeUnit
 
 object MovieServiceFactory {
 
-    const val BASE_URL = "https://api.themoviedb.org/"
+    private const val BASE_URL = "https://api.themoviedb.org/3/"
 
     fun create(isDebugMode: Boolean): MoviesService {
         val client = createOkHttp(isDebugMode)

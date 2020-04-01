@@ -1,7 +1,5 @@
 package com.androchef.data.models
 
-import com.sun.org.apache.xpath.internal.operations.Bool
-
 data class MovieEntity (
     var movieTitle : String? ="",
     var movieName : String? ="",

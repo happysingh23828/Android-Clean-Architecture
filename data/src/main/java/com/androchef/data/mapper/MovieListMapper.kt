@@ -1,36 +1,39 @@
 package com.androchef.data.mapper
 
 import com.androchef.data.models.MovieEntity
+import com.androchef.data.models.MovieListEntity
 import com.androchef.domain.models.movies.Movie
 import com.androchef.domain.models.movies.MoviesList
 
-class MovieMapper : Mapper<List<MovieEntity>,MoviesList> {
+class MovieListMapper : Mapper<MovieListEntity,MoviesList> {
 
-    override fun mapFromEntity(type: List<MovieEntity>): MoviesList {
+    override fun mapFromEntity(type: MovieListEntity): MoviesList {
         val moviesList = MoviesList()
-        type.forEach {
+        type.results.forEach {
             moviesList.results.add(Movie(
                 title = it.movieTitle,
                 name = it.movieName,
                 profile_path = it.profilePath,
                 poster_path = it.posterPath,
-                vote_average = it.voteAverage
-                ))
+                vote_average = it.voteAverage,
+                isBookMarked = it.isBookMarked
+            ))
         }
         return moviesList
     }
 
-    override fun mapToEntity(type: MoviesList): List<MovieEntity> {
-        val listOfMovies = mutableListOf<MovieEntity>()
+    override fun mapToEntity(type: MoviesList): MovieListEntity {
+        val movieListEntity = MovieListEntity()
         type.results.forEach {
-            listOfMovies.add(MovieEntity(
+            movieListEntity.results.add(MovieEntity(
                 movieTitle = it.title,
                 movieName = it.name,
-                posterPath = it.poster_path,
                 profilePath = it.profile_path,
-                voteAverage = it.vote_average
+                posterPath = it.poster_path,
+                voteAverage = it.vote_average,
+                isBookMarked = it.isBookMarked
             ))
         }
-        return  listOfMovies
+        return movieListEntity
     }
 }

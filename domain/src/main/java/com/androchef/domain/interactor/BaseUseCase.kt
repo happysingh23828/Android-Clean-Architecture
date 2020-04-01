@@ -10,28 +10,28 @@ import io.reactivex.observers.DisposableSingleObserver
 import io.reactivex.schedulers.Schedulers
 
 
-abstract class BaseUseCase<REQ : BaseUseCase.Params?, RES : BaseUseCase.ResponseValue> constructor(
+abstract class BaseUseCase<Params,Result> constructor(
     private val threadExecutor: ThreadExecutor,
     private val postExecutionThread: PostExecutionThread
 ) {
-    private var requestValues: REQ? = null
+    private var requestValues: Params? = null
 
-    protected abstract fun buildUseCaseObservable(requestValues: REQ? = null): Single<RES>
+    protected abstract fun buildUseCaseObservable(requestValues: Params? = null): Single<Result>
 
     /**
      * Executes the current use case.
      */
-    open fun execute(singleObserver: DisposableSingleObserver<RES>) {
+    open fun execute(singleObserver: DisposableSingleObserver<Result>) {
         val single = this.buildUseCaseObservable(requestValues).subscribeOn(
             Schedulers.from(threadExecutor)
-        ).observeOn(postExecutionThread.scheduler) as Single<RES>
+        ).observeOn(postExecutionThread.scheduler) as Single<Result>
         addDisposable(single.subscribeWith(singleObserver))
     }
 
-    open fun execute(singleObserver: DisposableSingleObserver<RES>, scheduler: Scheduler) {
+    open fun execute(singleObserver: DisposableSingleObserver<Result>, scheduler: Scheduler) {
         val single = this.buildUseCaseObservable(requestValues).subscribeOn(
             Schedulers.from(threadExecutor)
-        ).observeOn(scheduler) as Single<RES>
+        ).observeOn(scheduler) as Single<Result>
         addDisposable(single.subscribeWith(singleObserver))
     }
 
@@ -46,15 +46,4 @@ abstract class BaseUseCase<REQ : BaseUseCase.Params?, RES : BaseUseCase.Response
         disposables.add(disposable)
     }
 
-    /**
-     * Implement this interfaces for I/O values.
-     * [Params] input parameters for the UseCase
-     * [EmptyParam] empty parameter for the UseCase
-     * [ResponseValue] response data for this UseCase
-     */
-    interface Params
-
-    interface EmptyParam : Params
-
-    interface ResponseValue
 }

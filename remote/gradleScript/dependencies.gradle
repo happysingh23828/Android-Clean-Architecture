@@ -3,7 +3,7 @@ import dependencies.Dependencies
 dependencies {
 
     //Modules
-    implementation project(Dependencies.Module.domain)
+    implementation project(Dependencies.Module.data)
 
     //Retrofit
     implementation Dependencies.OkHttp3.loggingInterceptor

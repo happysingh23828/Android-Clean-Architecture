@@ -9,9 +9,9 @@ import io.reactivex.Observable
 import io.reactivex.Single
 
 interface MovieRepository {
-    fun getPopularMovies() : Single<GetMovieListUseCase.ResponseValues>
-    fun getMovieCredits(movieId : Int) : Single<GetMovieCreditsUseCase.ResponseValues>
+    fun getPopularMovies() : Single<MoviesList>
+    fun getMovieCredits(movieId : Int) : Single<MovieCredits>
     fun bookmarkMovie(movieId: Int) : Completable
     fun unBookmarkMovie(movieId: Int) : Completable
-    fun getBookMarkedMovies() : Observable<GetMovieListUseCase.ResponseValues>
+    fun getBookMarkedMovies() : Observable<List<String>>
 }

@@ -1,6 +1,5 @@
 import dependencies.Dependencies
 
-apply plugin: 'java-library'
 apply plugin: 'kotlin'
 // Applying dependencies from dependencies.gradle
 apply from: Dependencies.dependency

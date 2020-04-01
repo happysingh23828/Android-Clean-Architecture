@@ -18,5 +18,7 @@ data class Movie(
     var profile_path: String? = "",
     var video: Boolean = false,
     var vote_average: Double? = 0.0,
-    var vote_count: Int = 0
+    var vote_count: Int = 0,
+    var isBookMarked : Boolean
+
 )

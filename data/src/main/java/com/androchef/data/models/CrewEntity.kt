@@ -1,6 +1,6 @@
-package com.androchef.domain.models.movies
+package com.androchef.data.models
 
-data class Crew(
+data class CrewEntity(
     var id: Int = 0,
     var name: String = "",
     var profile_path: String = ""

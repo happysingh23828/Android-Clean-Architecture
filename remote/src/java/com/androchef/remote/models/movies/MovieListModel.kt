@@ -1,5 +1,6 @@
-package com.androchef.remote.models
+package com.androchef.remote.models.movies
 
+import com.androchef.remote.models.movies.MovieModel
 import com.google.gson.annotations.SerializedName
 
 class MovieListModel(
@@ -8,7 +9,7 @@ class MovieListModel(
     var page: Int = 0,
 
     @SerializedName("results")
-    var listOfMoviesResponse: List<MovieModel> = listOf(),
+    var listOfMoviesResponse: MutableList<MovieModel> = mutableListOf(),
 
     @SerializedName("total_pages")
     var totalPages: Int = 0,

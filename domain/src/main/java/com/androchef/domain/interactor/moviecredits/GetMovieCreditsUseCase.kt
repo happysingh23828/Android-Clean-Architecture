@@ -11,9 +11,9 @@ class GetMovieCreditsUseCase(
     private val movieRepository: MovieRepository,
     threadExecutor: ThreadExecutor,
     postExecutionThread: PostExecutionThread
-) : BaseUseCase<GetMovieCreditsUseCase.Params,GetMovieCreditsUseCase.ResponseValues>(threadExecutor,postExecutionThread) {
+) : BaseUseCase<GetMovieCreditsUseCase.Params,MovieCredits>(threadExecutor,postExecutionThread) {
 
-    override fun buildUseCaseObservable(requestValues: Params?): Single<ResponseValues> {
+    override fun buildUseCaseObservable(requestValues: Params?): Single<MovieCredits> {
         return movieRepository.getMovieCredits(requestValues!!.movieId)
     }
 
@@ -22,10 +22,5 @@ class GetMovieCreditsUseCase(
      */
     data class Params(
         val movieId: Int
-    ) : BaseUseCase.Params
-
-    /**
-     * Response value [MovieCredits]
-     */
-    data class ResponseValues(val movieCredits: MovieCredits) : BaseUseCase.ResponseValue
+    )
 }

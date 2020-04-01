@@ -1,4 +1,4 @@
-package com.androchef.remote.models
+package com.androchef.remote.models.movies
 
 import com.google.gson.annotations.SerializedName
 

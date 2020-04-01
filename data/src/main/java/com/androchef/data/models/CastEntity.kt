@@ -1,6 +1,6 @@
-package com.androchef.domain.models.movies
+package com.androchef.data.models
 
-data class Cast(
+data class CastEntity (
     var character: String = "",
     var id: Int = 0,
     var name: String = "",
