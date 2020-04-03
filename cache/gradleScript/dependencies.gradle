@@ -1,0 +1,19 @@
+import dependencies.Dependencies
+
+apply from: Dependencies.common
+
+dependencies {
+
+    //Modules
+    implementation project(Dependencies.Module.data)
+
+    //Gson
+    implementation Dependencies.Gson.gson
+
+    //Room
+    implementation Dependencies.Room.rxjava2
+    implementation Dependencies.Room.runtime
+    kapt Dependencies.Room.annotationProcessor
+
+}
+

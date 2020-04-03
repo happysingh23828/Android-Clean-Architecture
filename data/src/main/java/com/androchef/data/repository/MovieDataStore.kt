@@ -8,13 +8,15 @@ import com.androchef.domain.interactor.movielist.GetMovieListUseCase
 import com.androchef.domain.models.movies.MovieCredits
 import com.androchef.domain.models.movies.MoviesList
 import io.reactivex.Completable
+import io.reactivex.Flowable
 import io.reactivex.Observable
 import io.reactivex.Single
 
 interface MovieDataStore {
-    fun getBookMarkedMovies(): Observable<List<String>>
-    fun setMovieBookmarked(movieId: Int): Completable
-    fun setMovieUnBookMarked(movieId: Int): Completable
-    fun getPopularMovies(): Single<MovieListEntity>
-    fun getMoviesCredits(movieId: Int): Single<MovieCreditEntity>
+    fun getBookMarkedMovies(): Flowable<List<MovieEntity>>
+    fun setMovieBookmarked(movieId: Long): Completable
+    fun setMovieUnBookMarked(movieId: Long): Completable
+    fun saveMovies(listMovies : List<MovieEntity>) : Completable
+    fun getPopularMovies(): Single<List<MovieEntity>>
+    fun getMoviesCredits(movieId: Long): Single<MovieCreditEntity>
 }

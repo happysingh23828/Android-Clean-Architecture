@@ -11,6 +11,6 @@ import io.reactivex.Observable
 import io.reactivex.Single
 
 interface MoviesRemote {
-    fun getPopularMovies() : Single<MovieListEntity>
-    fun getMoviesCredits(movieId : Int): Single<MovieCreditEntity>
+    fun getPopularMovies() : Single<List<MovieEntity>>
+    fun getMoviesCredits(movieId : Long): Single<MovieCreditEntity>
 }

@@ -1,42 +1,53 @@
 package com.androchef.data
 
 import com.androchef.data.mapper.MovieCreditMapper
-import com.androchef.data.mapper.MovieListMapper
+import com.androchef.data.mapper.MovieMapper
 import com.androchef.data.store.MovieDataStoreFactory
+import com.androchef.domain.models.movies.Movie
 import com.androchef.domain.models.movies.MovieCredits
-import com.androchef.domain.models.movies.MoviesList
 import com.androchef.domain.repositories.MovieRepository
 import io.reactivex.Completable
+import io.reactivex.Flowable
 import io.reactivex.Observable
 import io.reactivex.Single
 
 class MoviesDataRepository constructor(
-    private val movieListMapper: MovieListMapper,
+    private val movieMapper: MovieMapper,
     private val movieCreditMapper: MovieCreditMapper,
     private val movieDataStoreFactory: MovieDataStoreFactory
 ) : MovieRepository {
 
-    override fun getPopularMovies(): Single<MoviesList> {
-       return movieDataStoreFactory.getRemoteDataStore().getPopularMovies().map {
-           movieListMapper.mapFromEntity(it)
-       }
+    override fun getPopularMovies(): Single<List<Movie>> {
+        return movieDataStoreFactory.getRemoteDataStore().getPopularMovies()
+            .map { listOfMovieEnties ->
+                listOfMovieEnties.map { movieMapper.mapFromEntity(it) }
+            }
     }
 
-    override fun getMovieCredits(movieId: Int): Single<MovieCredits> {
+    override fun getMovieCredits(movieId: Long): Single<MovieCredits> {
         return movieDataStoreFactory.getRemoteDataStore().getMoviesCredits(movieId).map {
             movieCreditMapper.mapFromEntity(it)
         }
     }
 
-    override fun bookmarkMovie(movieId: Int): Completable {
+    override fun bookmarkMovie(movieId: Long): Completable {
         return movieDataStoreFactory.getCacheDataStore().setMovieBookmarked(movieId)
     }
 
-    override fun unBookmarkMovie(movieId: Int): Completable {
+    override fun unBookmarkMovie(movieId: Long): Completable {
         return movieDataStoreFactory.getCacheDataStore().setMovieUnBookMarked(movieId)
     }
 
-    override fun getBookMarkedMovies(): Observable<List<String>> {
+    override fun saveMovies(listMovies: List<Movie>): Completable {
+        return movieDataStoreFactory.getCacheDataStore().saveMovies(
+            listMovies.map { movieMapper.mapToEntity(it) }
+        )
+    }
+
+    override fun getBookMarkedMovies(): Flowable<List<Movie>> {
         return movieDataStoreFactory.getCacheDataStore().getBookMarkedMovies()
+            .map { listOfMovieEntities ->
+                listOfMovieEntities.map { movieMapper.mapFromEntity(it) }
+            }
     }
 }

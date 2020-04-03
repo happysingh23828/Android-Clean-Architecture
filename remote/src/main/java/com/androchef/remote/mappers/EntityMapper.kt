@@ -1,6 +1,6 @@
 package com.androchef.remote.mappers
 
-interface Mapper<M, E> {
+interface EntityMapper<M, E> {
 
     fun mapFromModel(model : M) :E
 

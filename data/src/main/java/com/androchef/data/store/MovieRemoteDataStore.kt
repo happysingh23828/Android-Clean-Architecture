@@ -10,6 +10,7 @@ import com.androchef.domain.interactor.movielist.GetMovieListUseCase
 import com.androchef.domain.models.movies.MovieCredits
 import com.androchef.domain.models.movies.MoviesList
 import io.reactivex.Completable
+import io.reactivex.Flowable
 import io.reactivex.Observable
 import io.reactivex.Single
 
@@ -17,23 +18,28 @@ class MovieRemoteDataStore constructor(
     private val moviesRemote: MoviesRemote
 ) : MovieDataStore {
 
-    override fun getBookMarkedMovies(): Observable<List<String>> {
+    override fun getBookMarkedMovies(): Flowable<List<MovieEntity>> {
         throw UnsupportedOperationException("Bookmarked movies are not stored locally.")
     }
 
-    override fun setMovieBookmarked(movieId: Int): Completable {
+    override fun setMovieBookmarked(movieId: Long): Completable {
         throw UnsupportedOperationException("Bookmark is not available for remote")
     }
 
-    override fun setMovieUnBookMarked(movieId: Int): Completable {
+    override fun setMovieUnBookMarked(movieId: Long): Completable {
         throw UnsupportedOperationException("UnBookmark is not available for remote")
     }
 
-    override fun getPopularMovies(): Single<MovieListEntity> {
+    override fun getPopularMovies(): Single<List<MovieEntity>> {
         return moviesRemote.getPopularMovies()
     }
 
-    override fun getMoviesCredits(movieId: Int): Single<MovieCreditEntity> {
+    override fun getMoviesCredits(movieId: Long): Single<MovieCreditEntity> {
         return moviesRemote.getMoviesCredits(movieId)
     }
+
+    override fun saveMovies(listMovies: List<MovieEntity>): Completable {
+        throw UnsupportedOperationException("save movies action not applicable for remote")
+    }
+
 }

@@ -12,10 +12,10 @@ class GetMovieListUseCase constructor(
     private val movieRepository: MovieRepository,
     threadExecutor: ThreadExecutor,
     postExecutionThread: PostExecutionThread
-) : BaseUseCase<Void,MoviesList>(
+) : BaseUseCase<Void,List<Movie>>(
     threadExecutor, postExecutionThread
 ) {
-    override fun buildUseCaseObservable(requestValues: Void?): Single<MoviesList> {
+    override fun buildUseCaseObservable(requestValues: Void?): Single<List<Movie>> {
         return movieRepository.getPopularMovies()
     }
 }
