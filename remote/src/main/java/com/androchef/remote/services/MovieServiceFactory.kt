@@ -1,5 +1,6 @@
 package com.androchef.remote.services
 
+import com.androchef.remote.services.intercepter.AuthorizationInterceptor
 import com.google.gson.Gson
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -10,13 +11,11 @@ import java.util.concurrent.TimeUnit
 
 object MovieServiceFactory {
 
-    private const val BASE_URL = "https://api.themoviedb.org/3/"
-
-    fun create(isDebugMode: Boolean): MoviesService {
-        val client = createOkHttp(isDebugMode)
+    fun create(isDebugMode: Boolean,baseUrl : String,apiKey  : String): MoviesService {
+        val client = createOkHttp(isDebugMode,apiKey)
 
         val retrofit = Retrofit.Builder()
-            .baseUrl(BASE_URL)
+            .baseUrl(baseUrl)
             .client(client)
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .addConverterFactory(GsonConverterFactory.create(Gson()))
@@ -25,7 +24,7 @@ object MovieServiceFactory {
         return retrofit.create(MoviesService::class.java)
     }
 
-    private fun createOkHttp(isDebugMode: Boolean): OkHttpClient {
+    private fun createOkHttp(isDebugMode: Boolean,apiKey: String): OkHttpClient {
         val logging = HttpLoggingInterceptor()
 
         if (isDebugMode) {
@@ -37,6 +36,7 @@ object MovieServiceFactory {
             .addInterceptor(logging)
             .connectTimeout(60, TimeUnit.SECONDS)
             .readTimeout(60, TimeUnit.SECONDS)
+            .addInterceptor(AuthorizationInterceptor(apiKey))
             .build()
     }
 

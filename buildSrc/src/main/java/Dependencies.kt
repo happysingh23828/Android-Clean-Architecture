@@ -12,6 +12,7 @@ object Dependencies {
         const val cache = ":cache"
         const val remote = ":remote"
         const val domain = ":domain"
+        const val presentaion = ":presentation"
     }
 
     object Facebook {
@@ -32,6 +33,11 @@ object Dependencies {
         const val glide = "com.github.bumptech.glide:glide:${Version.glide}"
         const val annotationProcessor = "androidx.annotation:annotation:1.0.0"
         const val annotationCompiler = "com.github.bumptech.glide:compiler:${Version.glide}"
+    }
+
+
+    object Picasso {
+        const val picasso = "com.squareup.picasso:picasso:${Version.picasso}"
     }
 
     object Gson {

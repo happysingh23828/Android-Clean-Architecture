@@ -21,6 +21,10 @@ class RemoteModule {
     @Provides
     @Singleton
     fun provideMovieService(): MoviesService {
-        return MovieServiceFactory.create(BuildConfig.DEBUG)
+        return MovieServiceFactory.create(
+            BuildConfig.DEBUG,
+            BuildConfig.BASE_URL,
+            BuildConfig.TMDB_API_KEY
+        )
     }
 }

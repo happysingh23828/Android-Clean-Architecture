@@ -1,6 +1,8 @@
 package com.androchef.cleanarc.injection.modules
 
 import com.androchef.data.MoviesDataRepository
+import com.androchef.data.executor.JobExecutor
+import com.androchef.domain.executor.ThreadExecutor
 import com.androchef.domain.interactor.BaseUseCase
 import com.androchef.domain.interactor.moviecredits.GetMovieCreditsUseCase
 import com.androchef.domain.interactor.movielist.GetMovieListUseCase
@@ -31,6 +33,13 @@ class DomainModule {
     fun provideGetMovieCreditsUseCase(getMovieCreditsUseCase: GetMovieCreditsUseCase) :
             BaseUseCase<GetMovieCreditsUseCase.Params, MovieCredits> {
         return getMovieCreditsUseCase
+    }
+
+
+    @Provides
+    @Singleton
+    fun bindThreadExecutor(jobExecutor: JobExecutor): ThreadExecutor {
+        return jobExecutor
     }
 
 }

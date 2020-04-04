@@ -1,10 +1,12 @@
-package com.androchef.data.mapper
+package com.androchef.data.mapper.movielist
 
+import com.androchef.data.mapper.Mapper
 import com.androchef.data.models.MovieEntity
 import com.androchef.domain.models.movies.Movie
 import javax.inject.Inject
 
-class MovieMapper @Inject constructor(): Mapper<MovieEntity, Movie> {
+class MovieMapper @Inject constructor():
+    Mapper<MovieEntity, Movie> {
 
     override fun mapFromEntity(type: MovieEntity): Movie {
         return Movie(

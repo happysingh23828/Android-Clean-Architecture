@@ -1,11 +1,11 @@
 package com.androchef.cleanarc.injection
 
 import android.app.Application
-import com.androchef.cleanarc.ui.MainActivity
 import com.androchef.cleanarc.injection.modules.CacheModule
 import com.androchef.cleanarc.injection.modules.DomainModule
 import com.androchef.cleanarc.injection.modules.RemoteModule
 import com.androchef.cleanarc.injection.modules.UIModule
+import com.androchef.cleanarc.ui.movielist.MovieListActivity
 import dagger.BindsInstance
 import dagger.Component
 import javax.inject.Singleton
@@ -22,6 +22,6 @@ interface AppComponent {
         fun build(): AppComponent
     }
 
-    fun inject(mainActivity: MainActivity)
+    fun inject(movieListActivity: MovieListActivity)
 
 }

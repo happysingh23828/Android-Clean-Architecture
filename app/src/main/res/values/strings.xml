@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Android Clean Architecture</string>
+    <string name="not_available">Not available</string>
+    <string name="retry">Retry</string>
 </resources>

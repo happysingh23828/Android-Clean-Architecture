@@ -18,9 +18,10 @@ android {
         minSdkVersion Version.minSdk
         targetSdkVersion Version.targetSdk
         versionCode Version.versionCode
-        versionName Version.name
+        versionName Version.versionName
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         buildConfigField "String", "TMDB_API_KEY", "\"${getProperty("local.properties", "tmdb_api_key")}\""
+        buildConfigField "String", "BASE_URL", '"https://api.themoviedb.org/3/"'
     }
 
     androidExtensions {

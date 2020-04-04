@@ -1,0 +1,22 @@
+import dependencies.Dependencies
+
+apply from: Dependencies.common
+
+dependencies {
+
+    //Modules
+    implementation project(Dependencies.Module.domain)
+
+    //LifeCycle
+    implementation Dependencies.Lifecycle.lifeCycleExtension
+
+    //RxJava
+    implementation Dependencies.RxJava.rxAndroid
+    implementation Dependencies.RxJava.rxjava2
+    implementation Dependencies.RxJava.rxBinding
+
+    //JavaX
+    implementation Dependencies.javax
+
+}
+

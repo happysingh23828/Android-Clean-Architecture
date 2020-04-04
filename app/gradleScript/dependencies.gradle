@@ -9,6 +9,7 @@ dependencies {
     implementation project(Dependencies.Module.cache)
     implementation project(Dependencies.Module.data)
     implementation project(Dependencies.Module.remote)
+    implementation project(Dependencies.Module.presentaion)
 
     //Android X
     implementation Dependencies.AndroidX.appcompat
@@ -47,6 +48,9 @@ dependencies {
     api Dependencies.Retrofit2.retrofit
     api Dependencies.Retrofit2.converterGson
     api Dependencies.Retrofit2.adapterRxjava2
+
+    //Picasso
+    implementation Dependencies.Picasso.picasso
 
     //Glide
     implementation Dependencies.Glide.glide

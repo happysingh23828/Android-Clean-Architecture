@@ -1,14 +1,13 @@
 package com.androchef.data
 
-import com.androchef.data.mapper.MovieCreditMapper
-import com.androchef.data.mapper.MovieMapper
+import com.androchef.data.mapper.moviecredits.MovieCreditMapper
+import com.androchef.data.mapper.movielist.MovieMapper
 import com.androchef.data.store.MovieDataStoreFactory
 import com.androchef.domain.models.movies.Movie
 import com.androchef.domain.models.movies.MovieCredits
 import com.androchef.domain.repositories.MovieRepository
 import io.reactivex.Completable
 import io.reactivex.Flowable
-import io.reactivex.Observable
 import io.reactivex.Single
 import javax.inject.Inject
 

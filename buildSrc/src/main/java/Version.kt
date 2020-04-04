@@ -22,6 +22,7 @@ object Version {
     const val javaxInject = "1"
     const val javaxAnnotation = "1.0"
     const val parcelerVersion = "1.1.12"
+    const val picasso = "2.71828"
     const val gradleVersion = "3.5.0"
     const val kotlinVersion = "1.3.50"
     const val dokkaVeresion = "0.9.18"

@@ -9,10 +9,10 @@ import retrofit2.http.Path
 
 interface MoviesService {
 
-    @GET("/movie/popular")
+    @GET("movie/popular")
     fun getPopularsMovies() : Single<MovieListModel>
 
-    @GET("/movie/{movie_id}/credits")
+    @GET("movie/{movie_id}/credits")
     fun getMoviesCredits(@Path("movie_id") movieId : Int) : Single<MovieCreditsModel>
 
 }
