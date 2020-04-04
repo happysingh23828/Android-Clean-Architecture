@@ -21,11 +21,13 @@ object MovieServiceFactory {
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .addConverterFactory(GsonConverterFactory.create(Gson()))
             .build()
+
         return retrofit.create(MoviesService::class.java)
     }
 
     private fun createOkHttp(isDebugMode: Boolean): OkHttpClient {
         val logging = HttpLoggingInterceptor()
+
         if (isDebugMode) {
             logging.level =
                 HttpLoggingInterceptor.Level.BODY

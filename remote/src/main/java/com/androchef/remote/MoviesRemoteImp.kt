@@ -7,8 +7,9 @@ import com.androchef.remote.mappers.credits.MovieCreditResponseEntityMapper
 import com.androchef.remote.mappers.movies.MovieModelEntityMapper
 import com.androchef.remote.services.MoviesService
 import io.reactivex.Single
+import javax.inject.Inject
 
-class MoviesRemoteImp constructor(
+class MoviesRemoteImp @Inject constructor(
     private val moviesService: MoviesService,
     private val movieModelEntityMapper: MovieModelEntityMapper,
     private val movieCreditResponseMapper: MovieCreditResponseEntityMapper

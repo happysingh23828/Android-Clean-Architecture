@@ -7,8 +7,9 @@ import com.androchef.remote.mappers.EntityMapper
 import com.androchef.remote.models.credits.CastModel
 import com.androchef.remote.models.credits.CrewModel
 import com.androchef.remote.models.credits.MovieCreditsModel
+import javax.inject.Inject
 
-class MovieCreditResponseEntityMapper constructor(
+class MovieCreditResponseEntityMapper @Inject constructor(
     private val crewResponseMapper: CrewResponseEntityMapper,
     private val castResponseMapper : CastResponseEntityMapper
 ) : EntityMapper<MovieCreditsModel,MovieCreditEntity> {

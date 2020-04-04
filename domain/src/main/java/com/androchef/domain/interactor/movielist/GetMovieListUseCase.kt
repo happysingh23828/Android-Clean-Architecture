@@ -7,8 +7,9 @@ import com.androchef.domain.models.movies.Movie
 import com.androchef.domain.models.movies.MoviesList
 import com.androchef.domain.repositories.MovieRepository
 import io.reactivex.Single
+import javax.inject.Inject
 
-class GetMovieListUseCase constructor(
+class GetMovieListUseCase @Inject constructor(
     private val movieRepository: MovieRepository,
     threadExecutor: ThreadExecutor,
     postExecutionThread: PostExecutionThread

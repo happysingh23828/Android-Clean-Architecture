@@ -1,6 +1,8 @@
 package com.androchef.data.store
 
-class MovieDataStoreFactory constructor(
+import javax.inject.Inject
+
+class MovieDataStoreFactory @Inject constructor(
     private val movieCacheDataStore: MovieCacheDataStore,
     private val movieRemoteDataStore: MovieRemoteDataStore
 ) {

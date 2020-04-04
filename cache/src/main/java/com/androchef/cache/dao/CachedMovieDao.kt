@@ -9,16 +9,16 @@ import com.androchef.cache.models.CachedMovie
 @Dao
 interface CachedMovieDao {
 
-    @Query("SELECT * FROM movieTableName")
+    @Query("SELECT * FROM movies")
     fun getMovies() : List<CachedMovie>
 
-    @Query("DELETE FROM movieTableName")
+    @Query("DELETE FROM movies")
     fun clearMovies()
 
-    @Query("UPDATE movieTableName SET isBookMarked = 1 WHERE id = :id")
+    @Query("UPDATE movies SET is_bookmarked = 1 WHERE movie_id = :id")
     fun bookmarkMovie(id : Long) : Int
 
-    @Query("UPDATE movieTableName SET isBookMarked = 0 WHERE id = :id")
+    @Query("UPDATE movies SET is_bookmarked = 0 WHERE movie_id = :id")
     fun unBookmarkMovie(id : Long) : Int
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)

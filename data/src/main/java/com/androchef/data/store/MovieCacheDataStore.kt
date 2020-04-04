@@ -8,8 +8,9 @@ import io.reactivex.Completable
 import io.reactivex.Flowable
 import io.reactivex.Observable
 import io.reactivex.Single
+import javax.inject.Inject
 
-class MovieCacheDataStore constructor(
+class MovieCacheDataStore @Inject constructor(
     private val moviesCache: MoviesCache
 ) : MovieDataStore {
 

@@ -15,5 +15,9 @@ dependencies {
     implementation Dependencies.Room.runtime
     kapt Dependencies.Room.annotationProcessor
 
+
+    //JavaX
+    implementation Dependencies.javax
+
 }
 

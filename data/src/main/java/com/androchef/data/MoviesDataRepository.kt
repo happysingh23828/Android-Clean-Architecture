@@ -10,8 +10,9 @@ import io.reactivex.Completable
 import io.reactivex.Flowable
 import io.reactivex.Observable
 import io.reactivex.Single
+import javax.inject.Inject
 
-class MoviesDataRepository constructor(
+class MoviesDataRepository @Inject constructor(
     private val movieMapper: MovieMapper,
     private val movieCreditMapper: MovieCreditMapper,
     private val movieDataStoreFactory: MovieDataStoreFactory

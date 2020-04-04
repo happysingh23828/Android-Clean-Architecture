@@ -3,8 +3,9 @@ package com.androchef.remote.mappers.movies
 import com.androchef.data.models.MovieEntity
 import com.androchef.remote.mappers.EntityMapper
 import com.androchef.remote.models.movies.MovieModel
+import javax.inject.Inject
 
-class MovieModelEntityMapper :
+class MovieModelEntityMapper @Inject constructor():
     EntityMapper<MovieModel, MovieEntity> {
     override fun mapFromModel(model: MovieModel): MovieEntity {
         return MovieEntity(

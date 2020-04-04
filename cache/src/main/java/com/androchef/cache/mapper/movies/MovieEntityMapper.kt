@@ -3,11 +3,12 @@ package com.androchef.cache.mapper.movies
 import com.androchef.cache.mapper.EntityMapper
 import com.androchef.cache.models.CachedMovie
 import com.androchef.data.models.MovieEntity
+import javax.inject.Inject
 
-class MovieEntityMapper : EntityMapper<CachedMovie,MovieEntity> {
+class MovieEntityMapper @Inject constructor() : EntityMapper<CachedMovie,MovieEntity> {
     override fun mapFromCached(type: CachedMovie): MovieEntity {
         return  MovieEntity(
-            id = type.id,
+            id = type.movieId,
             movieTitle = type.title,
             movieName = type.name,
             posterPath = type.posterPath,
@@ -19,7 +20,7 @@ class MovieEntityMapper : EntityMapper<CachedMovie,MovieEntity> {
 
     override fun mapToCached(type: MovieEntity): CachedMovie {
         return CachedMovie(
-            id = type.id!!,
+            movieId = type.id!!,
             name = type.movieName,
             title = type.movieTitle,
             posterPath = type.posterPath,

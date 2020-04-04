@@ -9,4 +9,7 @@ dependencies {
     implementation Dependencies.RxJava.rxAndroid
     implementation Dependencies.RxJava.rxjava2
 
+    //JavaX
+    implementation Dependencies.javax
+
 }

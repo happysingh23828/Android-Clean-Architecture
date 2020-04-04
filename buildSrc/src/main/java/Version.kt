@@ -40,5 +40,5 @@ object Version {
     const val rxAndroid = "2.0.1"
     const val rxRelay = "2.0.0"
     const val rxBinding = "3.0.0"
-    const val stetho = "1.5.0"
+    const val stetho = "1.5.1"
 }

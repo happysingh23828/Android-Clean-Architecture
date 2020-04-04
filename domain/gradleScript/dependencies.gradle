@@ -5,4 +5,7 @@ dependencies {
     implementation Dependencies.RxJava.rxAndroid
     implementation Dependencies.RxJava.rxjava2
     implementation Dependencies.RxJava.rxBinding
+
+    //JavaX
+    implementation Dependencies.javax
 }

@@ -6,8 +6,9 @@ import com.androchef.data.models.MovieCreditEntity
 import com.androchef.domain.models.movies.Cast
 import com.androchef.domain.models.movies.Crew
 import com.androchef.domain.models.movies.MovieCredits
+import javax.inject.Inject
 
-class MovieCreditMapper(
+class MovieCreditMapper @Inject constructor(
     private val crewMapper: CrewMapper,
     private val castMapper: CastMapper
 ) : Mapper<MovieCreditEntity,MovieCredits> {
@@ -32,7 +33,7 @@ class MovieCreditMapper(
     /**
      * Cast and Crew Mapper
      */
-    inner class CrewMapper : Mapper<CrewEntity,Crew> {
+    inner class CrewMapper @Inject constructor() : Mapper<CrewEntity,Crew> {
         override fun mapFromEntity(type: CrewEntity): Crew {
             return Crew(
                 id = type.id,
@@ -50,7 +51,7 @@ class MovieCreditMapper(
         }
     }
 
-    inner class CastMapper : Mapper<CastEntity,Cast> {
+    inner class CastMapper @Inject constructor(): Mapper<CastEntity,Cast> {
         override fun mapFromEntity(type: CastEntity): Cast {
             return Cast(
                 character = type.character,

@@ -6,15 +6,16 @@ import com.androchef.domain.interactor.BaseUseCase
 import com.androchef.domain.models.movies.MovieCredits
 import com.androchef.domain.repositories.MovieRepository
 import io.reactivex.Single
+import javax.inject.Inject
 
-class GetMovieCreditsUseCase(
+class GetMovieCreditsUseCase @Inject constructor(
     private val movieRepository: MovieRepository,
     threadExecutor: ThreadExecutor,
     postExecutionThread: PostExecutionThread
 ) : BaseUseCase<GetMovieCreditsUseCase.Params,MovieCredits>(threadExecutor,postExecutionThread) {
 
     override fun buildUseCaseObservable(requestValues: Params?): Single<MovieCredits> {
-        return movieRepository.getMovieCredits(requestValues!!.movieId)
+        return movieRepository.getMovieCredits(requestValues!!.movieId.toLong())
     }
 
     /**

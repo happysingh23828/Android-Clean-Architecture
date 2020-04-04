@@ -5,10 +5,10 @@ apply from: Dependencies.common
 dependencies {
 
     //App Module
-//    implementation project(Dependencies.Module.domain)
-//    implementation project(Dependencies.Module.cache)
-//    implementation project(Dependencies.Module.data)
-//    implementation project(Dependencies.Module.remote)
+    implementation project(Dependencies.Module.domain)
+    implementation project(Dependencies.Module.cache)
+    implementation project(Dependencies.Module.data)
+    implementation project(Dependencies.Module.remote)
 
     //Android X
     implementation Dependencies.AndroidX.appcompat
@@ -29,6 +29,10 @@ dependencies {
     kapt Dependencies.Dagger.processor
     kapt Dependencies.Dagger.compiler
 
+    //Room
+    implementation Dependencies.Room.rxjava2
+    implementation Dependencies.Room.runtime
+    kapt Dependencies.Room.annotationProcessor
 
     //LifeCycle
     implementation Dependencies.Lifecycle.lifeCycleExtension

@@ -7,8 +7,10 @@ import com.androchef.cache.db.CacheConstants
 
 @Entity(tableName = CacheConstants.MOVIE_TABLE_NAME)
 data class CachedMovie (
+
     @PrimaryKey
-    var  id : Long,
+    @ColumnInfo(name = "movie_id")
+    var movieId : Long,
 
     @ColumnInfo(name = "title")
     var title : String? ="",
@@ -16,15 +18,15 @@ data class CachedMovie (
     @ColumnInfo(name = "name")
     var name : String? ="",
 
-    @ColumnInfo(name = "voteAverage")
+    @ColumnInfo(name = "vote_average")
     var voteAverage : Double? = 0.0,
 
-    @ColumnInfo(name = "profilePath")
+    @ColumnInfo(name = "profile_path")
     var profilePath :String? = "",
 
-    @ColumnInfo(name = "posterPath")
+    @ColumnInfo(name = "poster_path")
     var posterPath :String? = "",
 
-    @ColumnInfo(name = "isBookMarked")
+    @ColumnInfo(name = "is_bookmarked")
     var isBookMarked : Boolean
 )

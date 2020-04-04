@@ -4,30 +4,26 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import com.androchef.cache.Migrations
 import com.androchef.cache.dao.CachedMovieDao
 import com.androchef.cache.models.CachedMovie
+import javax.inject.Inject
 
-@Database(entities = [CachedMovie::class], version = 1)
-abstract class MovieDatabase  : RoomDatabase() {
+@Database(entities = [CachedMovie::class], version = Migrations.DB_VERSION)
+abstract class MovieDatabase @Inject constructor() : RoomDatabase() {
 
     abstract fun cachedMovieDao(): CachedMovieDao
 
-    private var INSTANCE: MovieDatabase? = null
+    companion object {
+        @Volatile
+        private var INSTANCE: MovieDatabase? = null
 
-    private val sLock = Any()
-
-    fun getInstance(context: Context): MovieDatabase {
-        if (INSTANCE == null) {
-            synchronized(sLock) {
-                if (INSTANCE == null) {
-                    INSTANCE = Room.databaseBuilder(context.applicationContext,
-                            MovieDatabase::class.java, CacheConstants.DB_NAME)
-                            .build()
-                }
-                return INSTANCE!!
-            }
+        fun getInstance(context: Context): MovieDatabase = INSTANCE ?: synchronized(this) {
+            INSTANCE ?: buildDatabase(context).also { INSTANCE = it }
         }
-        return INSTANCE!!
-    }
 
+        private fun buildDatabase(context: Context) = Room.databaseBuilder(
+            context.applicationContext, MovieDatabase::class.java, CacheConstants.DB_NAME
+        ).build()
+    }
 }

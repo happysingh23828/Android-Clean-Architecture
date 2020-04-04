@@ -6,14 +6,17 @@ import com.androchef.data.models.MovieEntity
 import com.androchef.data.repository.MoviesCache
 import io.reactivex.Completable
 import io.reactivex.Flowable
+import javax.inject.Inject
 
-class MoviesCacheImp constructor(
+class MoviesCacheImp @Inject constructor(
     private val movieDatabase: MovieDatabase,
     private val movieEntityMapper: MovieEntityMapper
 ) : MoviesCache {
     override fun saveMovies(listMovies: List<MovieEntity>): Completable {
         return Completable.defer {
-            movieDatabase.cachedMovieDao().getMovies().map { movieEntityMapper.mapFromCached(it) }
+            listMovies.map { movieEntityMapper.mapToCached(it) }.forEach {
+                movieDatabase.cachedMovieDao().addMovie(it)
+            }
             Completable.complete()
         }
     }

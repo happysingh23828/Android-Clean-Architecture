@@ -13,8 +13,9 @@ import io.reactivex.Completable
 import io.reactivex.Flowable
 import io.reactivex.Observable
 import io.reactivex.Single
+import javax.inject.Inject
 
-class MovieRemoteDataStore constructor(
+class MovieRemoteDataStore @Inject constructor(
     private val moviesRemote: MoviesRemote
 ) : MovieDataStore {
 
