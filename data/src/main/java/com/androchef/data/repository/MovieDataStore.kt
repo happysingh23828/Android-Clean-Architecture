@@ -13,7 +13,7 @@ import io.reactivex.Observable
 import io.reactivex.Single
 
 interface MovieDataStore {
-    fun getBookMarkedMovies(): Flowable<List<MovieEntity>>
+    fun getBookMarkedMovies(): Single<List<MovieEntity>>
     fun setMovieBookmarked(movieId: Long): Completable
     fun setMovieUnBookMarked(movieId: Long): Completable
     fun saveMovies(listMovies : List<MovieEntity>) : Completable

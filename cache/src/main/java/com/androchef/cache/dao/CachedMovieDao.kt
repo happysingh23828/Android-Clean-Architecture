@@ -12,6 +12,9 @@ interface CachedMovieDao {
     @Query("SELECT * FROM movies")
     fun getMovies() : List<CachedMovie>
 
+    @Query("SELECT * FROM movies WHERE is_bookmarked = 1")
+    fun getBookMarkedMovies() : List<CachedMovie>
+
     @Query("DELETE FROM movies")
     fun clearMovies()
 

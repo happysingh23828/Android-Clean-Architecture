@@ -6,7 +6,6 @@ import com.androchef.data.repository.MovieDataStore
 import com.androchef.data.repository.MoviesCache
 import io.reactivex.Completable
 import io.reactivex.Flowable
-import io.reactivex.Observable
 import io.reactivex.Single
 import javax.inject.Inject
 
@@ -14,7 +13,8 @@ class MovieCacheDataStore @Inject constructor(
     private val moviesCache: MoviesCache
 ) : MovieDataStore {
 
-    override fun getBookMarkedMovies(): Flowable<List<MovieEntity>> {
+
+    override fun getBookMarkedMovies(): Single<List<MovieEntity>> {
         return moviesCache.getBookMarkedMovies()
     }
 
@@ -27,7 +27,7 @@ class MovieCacheDataStore @Inject constructor(
     }
 
     override fun getPopularMovies(): Single<List<MovieEntity>> {
-        throw UnsupportedOperationException("Movies are not stored in Cache")
+        return moviesCache.getPopularMovies()
     }
 
     override fun getMoviesCredits(movieId: Long): Single<MovieCreditEntity> {

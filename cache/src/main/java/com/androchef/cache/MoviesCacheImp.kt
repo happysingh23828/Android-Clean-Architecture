@@ -5,7 +5,7 @@ import com.androchef.cache.mapper.movies.MovieEntityMapper
 import com.androchef.data.models.MovieEntity
 import com.androchef.data.repository.MoviesCache
 import io.reactivex.Completable
-import io.reactivex.Flowable
+import io.reactivex.Single
 import javax.inject.Inject
 
 class MoviesCacheImp @Inject constructor(
@@ -21,9 +21,17 @@ class MoviesCacheImp @Inject constructor(
         }
     }
 
-    override fun getBookMarkedMovies(): Flowable<List<MovieEntity>> {
-        return Flowable.defer {
-            Flowable.just(movieDatabase.cachedMovieDao().getMovies()).map {
+    override fun getPopularMovies(): Single<List<MovieEntity>> {
+        return Single.defer {
+            Single.just(movieDatabase.cachedMovieDao().getMovies()).map {
+                it.map { movieEntityMapper.mapFromCached(it) }
+            }
+        }
+    }
+
+    override fun getBookMarkedMovies(): Single<List<MovieEntity>> {
+        return Single.defer {
+            Single.just(movieDatabase.cachedMovieDao().getBookMarkedMovies()).map {
                 it.map { movieEntityMapper.mapFromCached(it) }
             }
         }

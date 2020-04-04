@@ -18,9 +18,21 @@ class MoviesDataRepository @Inject constructor(
 ) : MovieRepository {
 
     override fun getPopularMovies(): Single<List<Movie>> {
-        return movieDataStoreFactory.getRemoteDataStore().getPopularMovies()
-            .map { listOfMovieEnties ->
-                listOfMovieEnties.map { movieMapper.mapFromEntity(it) }
+        return movieDataStoreFactory.getCacheDataStore().getPopularMovies()
+            .flatMap { cachedList ->
+                if (cachedList.isNotEmpty()) {
+                    movieDataStoreFactory.getCacheDataStore().getPopularMovies()
+                        .map { listOfMovieEntities ->
+                            listOfMovieEntities.map { movieMapper.mapFromEntity(it) }
+                        }
+                } else {
+                    movieDataStoreFactory.getRemoteDataStore().getPopularMovies()
+                        .map { remoteList ->
+                            remoteList.map { movieMapper.mapFromEntity(it) }
+                        }
+                }
+            }.flatMap {
+                saveMovies(it).toSingle { it }
             }
     }
 
@@ -44,7 +56,7 @@ class MoviesDataRepository @Inject constructor(
         )
     }
 
-    override fun getBookMarkedMovies(): Flowable<List<Movie>> {
+    override fun getBookMarkedMovies(): Single<List<Movie>> {
         return movieDataStoreFactory.getCacheDataStore().getBookMarkedMovies()
             .map { listOfMovieEntities ->
                 listOfMovieEntities.map { movieMapper.mapFromEntity(it) }

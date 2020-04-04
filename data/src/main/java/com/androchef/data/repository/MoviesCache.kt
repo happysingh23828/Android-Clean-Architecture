@@ -5,10 +5,12 @@ import com.androchef.domain.models.movies.Movie
 import io.reactivex.Completable
 import io.reactivex.Flowable
 import io.reactivex.Observable
+import io.reactivex.Single
 
 interface MoviesCache {
+    fun getPopularMovies() : Single<List<MovieEntity>>
     fun saveMovies(listMovies : List<MovieEntity>) : Completable
-    fun getBookMarkedMovies() : Flowable<List<MovieEntity>>
+    fun getBookMarkedMovies() : Single<List<MovieEntity>>
     fun setMovieBookmarked(movieId: Long): Completable
     fun setMovieUnBookMarked(movieId: Long): Completable
 }

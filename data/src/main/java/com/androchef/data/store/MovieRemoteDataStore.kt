@@ -19,8 +19,8 @@ class MovieRemoteDataStore @Inject constructor(
     private val moviesRemote: MoviesRemote
 ) : MovieDataStore {
 
-    override fun getBookMarkedMovies(): Flowable<List<MovieEntity>> {
-        throw UnsupportedOperationException("Bookmarked movies are not stored locally.")
+    override fun getBookMarkedMovies(): Single<List<MovieEntity>> {
+        throw UnsupportedOperationException("this action is not applicable for remote store.")
     }
 
     override fun setMovieBookmarked(movieId: Long): Completable {

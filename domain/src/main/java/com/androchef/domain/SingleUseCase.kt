@@ -1,4 +1,4 @@
-package com.androchef.domain.interactor
+package com.androchef.domain
 
 import com.androchef.domain.executor.PostExecutionThread
 import com.androchef.domain.executor.ThreadExecutor
@@ -10,7 +10,7 @@ import io.reactivex.observers.DisposableSingleObserver
 import io.reactivex.schedulers.Schedulers
 
 
-abstract class BaseUseCase<Params,Result> constructor(
+abstract class SingleUseCase<Params,Result> constructor(
     private val threadExecutor: ThreadExecutor,
     private val postExecutionThread: PostExecutionThread
 ) {

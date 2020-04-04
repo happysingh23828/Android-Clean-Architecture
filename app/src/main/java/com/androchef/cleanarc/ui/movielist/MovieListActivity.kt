@@ -13,7 +13,9 @@ import com.androchef.cleanarc.extension.createFactory
 import com.androchef.cleanarc.extension.gone
 import com.androchef.cleanarc.extension.visible
 import com.androchef.cleanarc.ui.movielist.adapter.MovieListAdapter
+import com.androchef.domain.interactor.movielist.BookmarkMovieUseCase
 import com.androchef.domain.interactor.movielist.GetMovieListUseCase
+import com.androchef.domain.interactor.movielist.UnBookmarkMovieUseCase
 import com.androchef.presentation.movielist.mapper.MovieMapper
 import com.androchef.presentation.movielist.models.MovieView
 import com.androchef.presentation.movielist.viewmodel.MovieListViewModel
@@ -22,7 +24,7 @@ import kotlinx.android.synthetic.main.activity_movie_list.*
 import kotlinx.android.synthetic.main.layout_error_state.view.*
 import javax.inject.Inject
 
-class MovieListActivity : AppCompatActivity() {
+class MovieListActivity : AppCompatActivity(),MovieListAdapter.OnBookmarkClickedListener {
 
     companion object {
         fun start(context: Context) {
@@ -32,7 +34,7 @@ class MovieListActivity : AppCompatActivity() {
 
     lateinit var movieListViewModel: MovieListViewModel
 
-    private var movieListAdapter : MovieListAdapter? = null
+    private var movieListAdapter: MovieListAdapter? = null
 
     @Inject
     lateinit var movieMapper: MovieMapper
@@ -40,6 +42,11 @@ class MovieListActivity : AppCompatActivity() {
     @Inject
     lateinit var getMovieListUseCase: GetMovieListUseCase
 
+    @Inject
+    lateinit var bookmarkMovieUseCase: BookmarkMovieUseCase
+
+    @Inject
+    lateinit var unBookmarkMovieUseCase: UnBookmarkMovieUseCase
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -52,19 +59,26 @@ class MovieListActivity : AppCompatActivity() {
 
     private fun init() {
         MainApplication.appComponent().inject(this)
-        val factory = MovieListViewModel(movieMapper,getMovieListUseCase).createFactory()
-        movieListViewModel = ViewModelProviders.of(this,factory).get(MovieListViewModel::class.java)
+        val factory = MovieListViewModel(
+            movieMapper,
+            getMovieListUseCase,
+            bookmarkMovieUseCase,
+            unBookmarkMovieUseCase
+        ).createFactory()
+        movieListViewModel =
+            ViewModelProviders.of(this, factory).get(MovieListViewModel::class.java)
     }
 
     private fun setObservers() {
         movieListViewModel.stateObservable.observe(this, Observer {
-                updateView(it)
+            updateView(it)
         })
         fetchMovies()
     }
 
     private fun setRecyclerView() {
         movieListAdapter = MovieListAdapter()
+        movieListAdapter?.setBookMarkChangeListener(this)
         movieListRecyclerView.layoutManager = LinearLayoutManager(this)
         movieListRecyclerView.adapter = movieListAdapter
     }
@@ -74,10 +88,10 @@ class MovieListActivity : AppCompatActivity() {
     }
 
     private fun updateView(movieState: MovieState) {
-        when(movieState) {
+        when (movieState) {
             MovieState.Loading -> showLoading()
             is MovieState.Error -> showErrorLayout(movieState.message)
-            is MovieState.MovieList -> showMovieListToUI(movieState.listOfMovieViews)
+            is MovieState.MovieListSuccess -> showMovieListToUI(movieState.listOfMovieViews)
         }
     }
 
@@ -99,7 +113,7 @@ class MovieListActivity : AppCompatActivity() {
         movieListRecyclerView.visible()
     }
 
-    private fun showErrorLayout(errorMessage : String) {
+    private fun showErrorLayout(errorMessage: String) {
         hideLoading()
         movieListRecyclerView.gone()
         layoutError.tvErrorMessage.text = errorMessage
@@ -114,5 +128,9 @@ class MovieListActivity : AppCompatActivity() {
 
     private fun hideLoading() {
         rootRecyclerView.isRefreshing = false
+    }
+
+    override fun onBookmarkChanged(movieView: MovieView) {
+        movieListViewModel.onBookmarkStatusChanged(movieView)
     }
 }

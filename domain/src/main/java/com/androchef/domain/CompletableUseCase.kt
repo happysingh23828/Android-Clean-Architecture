@@ -1,33 +1,45 @@
 package com.androchef.domain
 
 import com.androchef.domain.executor.PostExecutionThread
+import com.androchef.domain.executor.ThreadExecutor
 import io.reactivex.Completable
+import io.reactivex.Scheduler
+import io.reactivex.Single
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
 import io.reactivex.observers.DisposableCompletableObserver
+import io.reactivex.observers.DisposableSingleObserver
 import io.reactivex.schedulers.Schedulers
 
 abstract class CompletableUseCase<in Params> constructor(
-        private val postExecutionThread: PostExecutionThread
+    private val threadExecutor: ThreadExecutor,
+    private val postExecutionThread: PostExecutionThread
 ) {
 
-    private val disposables = CompositeDisposable()
-
-    protected abstract fun doWork(params: Params? = null): Completable
+    protected abstract fun buildUseCaseObservable(requestValues: Params? = null): Completable
 
     open fun execute(observer: DisposableCompletableObserver, params: Params? = null) {
-        val completable = this.doWork(params)
-                .subscribeOn(Schedulers.io())
-                .observeOn(postExecutionThread.scheduler)
+        val completable = this.buildUseCaseObservable(params)
+            .subscribeOn(Schedulers.from(threadExecutor))
+            .observeOn(postExecutionThread.scheduler)
         addDisposable(completable.subscribeWith(observer))
     }
 
-    fun addDisposable(disposable: Disposable) {
-        disposables.add(disposable)
+    open fun execute(singleObserver: DisposableCompletableObserver, params: Params? = null,scheduler: Scheduler) {
+        val single = this.buildUseCaseObservable(params).subscribeOn(
+            Schedulers.from(threadExecutor)
+        ).observeOn(scheduler)
+        addDisposable(single.subscribeWith(singleObserver))
     }
 
-    fun clear() {
-        if (!disposables.isDisposed) disposables.dispose()
+    private val disposables = CompositeDisposable()
+
+    fun dispose() {
+        if (disposables.isDisposed.not()) disposables.dispose()
+    }
+
+    private fun addDisposable(disposable: Disposable) {
+        disposables.add(disposable)
     }
 
 }

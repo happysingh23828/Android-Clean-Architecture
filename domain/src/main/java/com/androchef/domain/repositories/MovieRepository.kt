@@ -16,5 +16,5 @@ interface MovieRepository {
     fun saveMovies(listMovies : List<Movie>) : Completable
     fun bookmarkMovie(movieId: Long) : Completable
     fun unBookmarkMovie(movieId: Long) : Completable
-    fun getBookMarkedMovies() : Flowable<List<Movie>>
+    fun getBookMarkedMovies() : Single<List<Movie>>
 }
