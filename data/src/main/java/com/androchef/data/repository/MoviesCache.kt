@@ -13,4 +13,7 @@ interface MoviesCache {
     fun getBookMarkedMovies() : Single<List<MovieEntity>>
     fun setMovieBookmarked(movieId: Long): Completable
     fun setMovieUnBookMarked(movieId: Long): Completable
+    fun isCached(): Single<Boolean>
+    fun setLastCacheTime(lastCache: Long)
+    fun isExpired(): Boolean
 }

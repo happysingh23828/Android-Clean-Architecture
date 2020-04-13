@@ -24,11 +24,11 @@ class MovieRemoteDataStore @Inject constructor(
     }
 
     override fun setMovieBookmarked(movieId: Long): Completable {
-        throw UnsupportedOperationException("Bookmark is not available for remote")
+        throw UnsupportedOperationException("Bookmark is not available for remote.")
     }
 
     override fun setMovieUnBookMarked(movieId: Long): Completable {
-        throw UnsupportedOperationException("UnBookmark is not available for remote")
+        throw UnsupportedOperationException("UnBookmark is not available for remote.")
     }
 
     override fun getPopularMovies(): Single<List<MovieEntity>> {
@@ -40,7 +40,10 @@ class MovieRemoteDataStore @Inject constructor(
     }
 
     override fun saveMovies(listMovies: List<MovieEntity>): Completable {
-        throw UnsupportedOperationException("save movies action not applicable for remote")
+        throw UnsupportedOperationException("save movies action not applicable for remote.")
     }
 
+    override fun isCached(): Single<Boolean> {
+        throw UnsupportedOperationException("this movies action not applicable for remote.")
+    }
 }

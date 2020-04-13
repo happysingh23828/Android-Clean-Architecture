@@ -10,7 +10,6 @@ class MainApplication : Application() {
     init {
         instance = this
     }
-     val baseImageUrl : String = "http://image.tmdb.org/t/p/w185"
 
     var appComponent: AppComponent =
         DaggerAppComponent.builder().application(this).build()

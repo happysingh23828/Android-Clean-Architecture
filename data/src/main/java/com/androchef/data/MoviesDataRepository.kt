@@ -7,7 +7,6 @@ import com.androchef.domain.models.movies.Movie
 import com.androchef.domain.models.movies.MovieCredits
 import com.androchef.domain.repositories.MovieRepository
 import io.reactivex.Completable
-import io.reactivex.Flowable
 import io.reactivex.Single
 import javax.inject.Inject
 
@@ -18,20 +17,14 @@ class MoviesDataRepository @Inject constructor(
 ) : MovieRepository {
 
     override fun getPopularMovies(): Single<List<Movie>> {
-        return movieDataStoreFactory.getCacheDataStore().getPopularMovies()
-            .flatMap { cachedList ->
-                if (cachedList.isNotEmpty()) {
-                    movieDataStoreFactory.getCacheDataStore().getPopularMovies()
-                        .map { listOfMovieEntities ->
-                            listOfMovieEntities.map { movieMapper.mapFromEntity(it) }
-                        }
-                } else {
-                    movieDataStoreFactory.getRemoteDataStore().getPopularMovies()
-                        .map { remoteList ->
-                            remoteList.map { movieMapper.mapFromEntity(it) }
-                        }
-                }
-            }.flatMap {
+        return movieDataStoreFactory.getCacheDataStore().isCached()
+            .flatMap {
+                movieDataStoreFactory.getDataStore(it).getPopularMovies()
+            }
+            .flatMap {
+                Single.just(it.map { movieMapper.mapFromEntity(it) })
+            }
+            .flatMap {
                 saveMovies(it).toSingle { it }
             }
     }

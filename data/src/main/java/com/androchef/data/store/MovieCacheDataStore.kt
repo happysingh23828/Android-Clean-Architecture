@@ -36,6 +36,12 @@ class MovieCacheDataStore @Inject constructor(
 
     override fun saveMovies(listMovies: List<MovieEntity>): Completable {
         return moviesCache.saveMovies(listMovies)
+            .doOnComplete {
+                moviesCache.setLastCacheTime(System.currentTimeMillis())
+            }
     }
 
+    override fun isCached(): Single<Boolean> {
+        return moviesCache.isCached()
+    }
 }

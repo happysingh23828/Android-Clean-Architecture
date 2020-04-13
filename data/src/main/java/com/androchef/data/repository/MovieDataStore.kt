@@ -19,4 +19,5 @@ interface MovieDataStore {
     fun saveMovies(listMovies : List<MovieEntity>) : Completable
     fun getPopularMovies(): Single<List<MovieEntity>>
     fun getMoviesCredits(movieId: Long): Single<MovieCreditEntity>
+    fun isCached(): Single<Boolean>
 }

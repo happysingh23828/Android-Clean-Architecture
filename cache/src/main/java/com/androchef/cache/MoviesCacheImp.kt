@@ -10,8 +10,10 @@ import javax.inject.Inject
 
 class MoviesCacheImp @Inject constructor(
     private val movieDatabase: MovieDatabase,
-    private val movieEntityMapper: MovieEntityMapper
+    private val movieEntityMapper: MovieEntityMapper,
+    private val preferencesHelper: PreferencesHelper
 ) : MoviesCache {
+
     override fun saveMovies(listMovies: List<MovieEntity>): Completable {
         return Completable.defer {
             listMovies.map { movieEntityMapper.mapToCached(it) }.forEach {
@@ -49,5 +51,38 @@ class MoviesCacheImp @Inject constructor(
             movieDatabase.cachedMovieDao().unBookmarkMovie(movieId)
             Completable.complete()
         }
+    }
+
+    /**
+     * Caching Implementations
+     */
+    override fun isCached(): Single<Boolean> {
+        return Single.defer {
+            Single.just(movieDatabase.cachedMovieDao().getMovies().isNotEmpty())
+        }
+    }
+
+    override fun setLastCacheTime(lastCache: Long) {
+        preferencesHelper.lastCacheTime = lastCache
+    }
+
+    override fun isExpired(): Boolean {
+        val currentTime = System.currentTimeMillis()
+        val lastUpdateTime = this.getLastCacheUpdateTimeMillis()
+        return currentTime - lastUpdateTime > EXPIRATION_TIME
+    }
+
+    /**
+     * Get in millis, the last time the cache was accessed.
+     */
+    private fun getLastCacheUpdateTimeMillis(): Long {
+        return preferencesHelper.lastCacheTime
+    }
+
+    companion object {
+        /**
+         * Expiration time set to 5 minutes
+         */
+        private const val EXPIRATION_TIME = (60 * 5 * 1000).toLong()
     }
 }
