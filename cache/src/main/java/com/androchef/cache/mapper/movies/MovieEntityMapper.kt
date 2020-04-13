@@ -25,7 +25,8 @@ class MovieEntityMapper @Inject constructor() : EntityMapper<CachedMovie,MovieEn
             title = type.movieTitle,
             posterPath = type.posterPath,
             profilePath = type.profilePath,
-            isBookMarked = type.isBookMarked
-        )
+            isBookMarked = type.isBookMarked,
+            voteAverage = type.voteAverage
+            )
     }
 }
