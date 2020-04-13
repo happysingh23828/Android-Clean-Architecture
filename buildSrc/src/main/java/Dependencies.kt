@@ -103,6 +103,8 @@ object Dependencies {
         const val android_test_room = "android.arch.persistence.room:testing:${Version.room}"
         const val android_test_rules = "com.android.support.test:rules:${Version.rules}"
         const val android_test_runner = "com.android.support.test:runner:${Version.runner}"
+        const val mockito = "org.mockito:mockito-core:${Version.mockito}"
+        const val assert_j = "org.assertj:assertj-core:${Version.assertJVersion}"
     }
 
 

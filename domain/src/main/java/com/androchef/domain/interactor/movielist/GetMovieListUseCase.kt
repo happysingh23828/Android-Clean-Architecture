@@ -15,7 +15,7 @@ class GetMovieListUseCase @Inject constructor(
 ) : SingleUseCase<Void, List<Movie>>(
     threadExecutor, postExecutionThread
 ) {
-    override fun buildUseCaseObservable(requestValues: Void?): Single<List<Movie>> {
+    public override fun buildUseCaseObservable(requestValues: Void?): Single<List<Movie>> {
         return movieRepository.getPopularMovies()
     }
 }
