@@ -5,6 +5,10 @@ dependencies {
     //Modules
     implementation project(Dependencies.Module.domain)
 
+    //Unit Testing
+    implementation Dependencies.Test.mockito
+    implementation Dependencies.Test.test_junit
+
     //RxJava
     implementation Dependencies.RxJava.rxAndroid
     implementation Dependencies.RxJava.rxjava2
