@@ -17,11 +17,11 @@ open class MovieDataStoreFactory @Inject constructor(
         return getRemoteDataStore()
     }
 
-    fun getCacheDataStore(): MovieCacheDataStore {
+    fun getCacheDataStore(): MovieDataStore {
         return movieCacheDataStore
     }
 
-    fun getRemoteDataStore(): MovieRemoteDataStore {
+    fun getRemoteDataStore(): MovieDataStore {
         return movieRemoteDataStore
     }
 }
