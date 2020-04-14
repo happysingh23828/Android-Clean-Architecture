@@ -14,7 +14,7 @@ class UnBookmarkMovieUseCase @Inject constructor(
 ) : CompletableUseCase<Long>(
     threadExecutor, postExecutionThread
 ) {
-    override fun buildUseCaseObservable(requestValues: Long?): Completable {
+    public override fun buildUseCaseObservable(requestValues: Long?): Completable {
         return movieRepository.unBookmarkMovie(requestValues!!)
     }
 }
