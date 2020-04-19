@@ -7,15 +7,17 @@ import javax.inject.Inject
 
 class MovieMapper @Inject constructor() : Mapper<MovieView, Movie> {
 
-    private val profileUrlPrefix = "https://image.tmdb.org/t/p/w185"
-
     override fun mapToView(type: Movie): MovieView {
         return MovieView(
             id = type.id,
-            profilePath = profileUrlPrefix.plus(type.poster_path),
+            profilePath = PROFILE_URL_PREFIX.plus(type.poster_path),
             movieName = type.title ?: type.original_title,
             isBookMarked = type.isBookMarked,
             voteAverage = type.vote_average
         )
+    }
+
+    companion object {
+        const val PROFILE_URL_PREFIX = "https://image.tmdb.org/t/p/w185"
     }
 }

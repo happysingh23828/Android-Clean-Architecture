@@ -8,5 +8,4 @@ sealed class MovieState {
     data class Error(var message: String) : MovieState()
     data class MovieListSuccess(var listOfMovieViews: List<MovieView>) : MovieState()
     object BookmarkChangeSuccess : MovieState()
-    data class BookmarkChangeError(var message: String) : MovieState()
 }
