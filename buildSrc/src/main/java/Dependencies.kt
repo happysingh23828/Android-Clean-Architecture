@@ -23,7 +23,6 @@ object Dependencies {
     object Lifecycle {
         const val extension = "android.arch.lifecycle:extensions:${Version.lifecycle}"
         const val annotation_compliler = "android.arch.lifecycle:compiler:${Version.lifecycle}"
-        const val testing_core_testing = "android.arch.core:core-testing:${Version.lifecycle}"
         // ViewModel and LiveData
         const val lifeCycleExtension =
             "androidx.lifecycle:lifecycle-extensions:${Version.lifecycleVersion}"
@@ -99,12 +98,14 @@ object Dependencies {
     object Test {
         const val test_junit = "junit:junit:${Version.junit}"
         const val android_test_espresso_core =
-            "com.android.support.test.espresso:espresso-core:${Version.espresso}"
+            "androidx.test.espresso:espresso-core:${Version.espresso}"
         const val android_test_room = "android.arch.persistence.room:testing:${Version.room}"
-        const val android_test_rules = "com.android.support.test:rules:${Version.rules}"
-        const val android_test_runner = "com.android.support.test:runner:${Version.runner}"
+        const val testing_core_testing = "android.arch.core:core-testing:${Version.lifecycle}"
+        const val android_test_rules = "androidx.test:rules:${Version.rules}"
+        const val android_test_runner = "androidx.test:runner:${Version.runner}"
         const val mockito = "org.mockito:mockito-core:${Version.mockito}"
         const val assert_j = "org.assertj:assertj-core:${Version.assertJVersion}"
+        const val roboElectric = "org.robolectric:robolectric:${Version.roboElectric}"
     }
 
 

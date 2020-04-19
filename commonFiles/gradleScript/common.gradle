@@ -9,6 +9,9 @@ dependencies {
     androidTestImplementation Dependencies.Test.android_test_espresso_core
     androidTestImplementation Dependencies.Test.android_test_rules
     androidTestImplementation Dependencies.Test.android_test_runner
+    testImplementation Dependencies.Test.roboElectric
+    testImplementation Dependencies.Test.android_test_room
+    testImplementation Dependencies.Test.mockito
 
     //recyclerView Adapter
 }
