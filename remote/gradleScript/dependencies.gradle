@@ -5,6 +5,10 @@ dependencies {
     //Modules
     implementation project(Dependencies.Module.data)
 
+    //Unit Testing
+    implementation Dependencies.Test.mockito
+    implementation Dependencies.Test.test_junit
+
     //Retrofit
     implementation Dependencies.OkHttp3.loggingInterceptor
     implementation Dependencies.Retrofit2.adapterRxjava2
