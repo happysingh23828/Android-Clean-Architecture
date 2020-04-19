@@ -12,6 +12,7 @@ dependencies {
     testImplementation Dependencies.Test.roboElectric
     testImplementation Dependencies.Test.android_test_room
     testImplementation Dependencies.Test.mockito
+    testImplementation Dependencies.Test.testing_core_testing
 
     //recyclerView Adapter
 }
