@@ -53,9 +53,29 @@ Clean Architecture will not be appropriate for every project, so it is down to y
 - [Robolectric](http://robolectric.org/) - allows you to write unit tests and run them on a desktop JVM while still using Android API.
 - [Stetho](https://github.com/facebook/stetho) - Stetho is a debug bridge for Android applications, enabling the powerful Chrome Developer Tools and much more.
 
-## Architecture
+## Clean Architecture
 
+<center><img width="200" height="200" src="https://koenig-media.raywenderlich.com/uploads/2019/06/Android-Clean-Architecture.png"><p>- photo by: <a href="https://www.raywenderlich.com/3595916-clean-architecture-tutorial-for-android-getting-started">raywenderlich</a></p></center>
 
+### What is clean architecture?
+Architecture means the overall design of the project. It's the organization of the code into classes or files or components or modules. And it's how all these groups of code relate to each other. The architecture defines where the application performs its core functionality and how that functionality interacts with things like the database and the user interface.
+
+### Why the cleaner approach?
+1. Separation of code in different layers with assigned responsibilities making it easier for further modification.
+2. High level of abstraction
+3. Loose coupling between the code
+4. Testing of code is painless
+> Clean code always looks like it was written by someone who cares. - by Michael Feathers”
+
+### Layers
+- **Domain** - Would execute business logic which is independent of any layer and is just a pure kotlin/java package with no android specific dependency.
+- **Data** - Would dispense the required data for the application to the domain layer by implementing interface exposed by the domain.
+- **Presentation / framework** - Would include both domain and data layer and is android specific which executes the UI logic.
+
+## App's Architecture
+
+  
+  
 ## Thanks
 
 A special thanks to the authors involved with this repository, they were a great resource during our learning!
