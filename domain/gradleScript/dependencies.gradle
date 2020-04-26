@@ -7,8 +7,8 @@ dependencies {
     implementation Dependencies.RxJava.rxBinding
 
     //Unit Testing
-    implementation Dependencies.Test.mockito
-    implementation Dependencies.Test.test_junit
+    testImplementation Dependencies.Test.mockito
+    testImplementation Dependencies.Test.test_junit
 
     //JavaX
     implementation Dependencies.javax

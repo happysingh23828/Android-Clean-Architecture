@@ -6,8 +6,8 @@ dependencies {
     implementation project(Dependencies.Module.data)
 
     //Unit Testing
-    implementation Dependencies.Test.mockito
-    implementation Dependencies.Test.test_junit
+    testImplementation Dependencies.Test.mockito
+    testImplementation Dependencies.Test.test_junit
 
     //Retrofit
     implementation Dependencies.OkHttp3.loggingInterceptor

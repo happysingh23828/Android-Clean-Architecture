@@ -2,6 +2,7 @@ package com.androchef.remote.services
 
 import com.androchef.remote.services.intercepter.AuthorizationInterceptor
 import com.google.gson.Gson
+import okhttp3.Dns
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -34,6 +35,7 @@ object MovieServiceFactory {
 
         return OkHttpClient.Builder()
             .addInterceptor(logging)
+            .dns(Dns.SYSTEM)
             .connectTimeout(60, TimeUnit.SECONDS)
             .readTimeout(60, TimeUnit.SECONDS)
             .addInterceptor(AuthorizationInterceptor(apiKey))
