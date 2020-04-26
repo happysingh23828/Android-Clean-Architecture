@@ -21,26 +21,26 @@ jobs:
       - name: Run Unit tests
         run: bash ./gradlew test --stacktrace
 
-    #Generating Apk.
-    apk:
-      name: Generate APK
-      runs-on: ubuntu-18.04
+  #Generating Apk.
+  apk:
+    name: Generate APK
+    runs-on: ubuntu-18.04
 
-      steps:
-        - uses: actions/checkout@v1
-        - name: set up JDK 1.8
-          uses: actions/setup-java@v1
-          with:
-            java-version: 1.8
+    steps:
+      - uses: actions/checkout@v1
+      - name: set up JDK 1.8
+        uses: actions/setup-java@v1
+        with:
+          java-version: 1.8
 
-        - name: Grant Permission to Execute
-          run: chmod +x gradlew
+      - name: Grant Permission to Execute
+        run: chmod +x gradlew
 
-        - name: Build debug APK
-          run: bash ./gradlew assembleDebug --stacktrace
+      - name: Build debug APK
+        run: bash ./gradlew assembleDebug --stacktrace
 
-        - name: Upload APK
-          uses: actions/upload-artifact@v1
-          with:
-            name: app
-            path: app/build/outputs/apk/debug/app-debug.apk
+      - name: Upload APK
+        uses: actions/upload-artifact@v1
+        with:
+          name: app
+          path: app/build/outputs/apk/debug/app-debug.apk
