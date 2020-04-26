@@ -27,16 +27,6 @@ android {
         experimental = true
     }
 
-    //Customized APK name
-    android {
-        applicationVariants.all { variant ->
-            variant.outputs.all {
-                outputFileName =
-                        "CleanArc-${variant.versionName}-${variant.versionCode}-${buildTimeStamp()}-${variant.name}.apk"
-            }
-        }
-    }
-
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
@@ -66,12 +56,6 @@ android {
             testCoverageEnabled true
         }
     }
-}
-
-static def buildTimeStamp() {
-    def df = new SimpleDateFormat("ddMMM_hh.mma")
-    df.setTimeZone(TimeZone.getTimeZone("IST"))
-    return df.format(new Date())
 }
 
 def getProperty(String filename, String propName) {
