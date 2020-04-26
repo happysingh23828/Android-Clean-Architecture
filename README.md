@@ -18,6 +18,12 @@ This is a sample movie list  Android application 📱 built to demonstrate use o
 
 [![Clean Architecture App](https://img.shields.io/badge/CleanArchitecture🍲-APK-red.svg?style=for-the-badge&logo=android)](https://github.com/happysingh23828/raw/master/Android-Clean-Architecture/files/clean-arc.apk)
 
+## How to build on your environment
+Add your API key in **local.properties** file.
+```xml
+tmdb_api_key = YOUR_API_KEY
+```
+If you don't have tmdb api key you can create new key from [here](https://developers.themoviedb.org/3/getting-started/introduction).
 
 ## About
 It simply loads **Popular Movies** list from [TMDB-API](https://www.themoviedb.org/)  and stores it in persistence storage (i.e. Room Database). Movies list will be always loaded from local database. Remote data (from API) and Local data is always synchronized.
@@ -72,11 +78,80 @@ Architecture means the overall design of the project. It's the organization of t
 - **Data** - Would dispense the required data for the application to the domain layer by implementing interface exposed by the domain.
 - **Presentation / framework** - Would include both domain and data layer and is android specific which executes the UI logic.
 
-## App's Architecture
+## Modules of App
+  ###  app - [android module]
+  It uses the all the components and class releated to Android Framework. It gets the data from presentation layer and shows on UI.
+  
+  ### buildSrc [[kotlin module]
+  This module helps to list and manage all the dependencies of the app at one place. It has list of dependencies and versions of that dependencies.
+  
+  ### data [kotlin module]
+  The Data layer is our access point to external data layers and is used to fetch data from multiple sources (the cache and remote in our case).
+  
+  ### cache [android module]
+  The Cache layer handles all communication with the local database which is used to cache data.
+  
+  ### domain [kotlin module]
+  The domain layer responsibility is to simply contain the UseCase instance used to retrieve data from the Data layer and pass it onto the Presentation layer. 
+  
+  ### presentation [android module]
+  This layer's responsibility is to handle the presentation of the User Interface, but at the same time knows nothing about the user interface itself. This layer has no dependence on the Android Framework, it is a pure Kotlin module. Each ViewModel class that is created implements the ViewModel class found within the Architecture components library. This ViewModel can then be used by the UI layer to communicate with UseCases and retrieve data.
+  
+  ### remote [kotlin module]
+  The Remote layer handles all communications with remote sources, in our case it makes a simple API call using a Retrofit interface. 
 
+## Code Coverage Reports
+This projects uses [jacoco plugin](https://www.jacoco.org/jacoco/) for generate code coverage reports. currently each modules generates seprate code reports.
+
+  #### Java/Kotlin Modules
+  Use `./gradlew jacocoTestReport`
   
+  Reports location for each module-<br>
+  `-/data/build/reports/jacoco/test/html/index.html`<br>
+  `-/domain/build/reports/jacoco/test/html/index.html`<br>
+  `-/remote/build/reports/jacoco/test/html/index.html`<br>
+
+  #### Android Modules
+  Use `./gradlew jacocoTestReportDebug`
+
+  Reports location for each module-<br>
+  `-/app/build/reports/jacoco/debug/index.html`<br>
+  `-/cache/build/reports/jacoco/debug/index.html`<br>
+  `-/presentattion/build/reports/jacoco/debug/index.html` <br>
+ 
   
+## Current App's Architecture
+This app uses [***MVVM (Model View View-Model)***](https://developer.android.com/jetpack/docs/guide#recommended-app-arch) architecture.
+
+## Future Plans
+1. Add another features, Showing the crew and cast list for a movie. 
+2. Instrumentation test cases to be added.
+3. Merge all code covergae reports at single place.
+4. MvRx implementaion on the UI layer.
+5. MVI implementation on the UI layer.
+6. Reach code coverage atleast 80%.
+7. Dark Mode theme etc.
+
+
 ## Thanks
-
 A special thanks to the authors involved with this repository, they were a great resource during our learning!
 - https://github.com/bufferapp/android-clean-architecture-mvi-boilerplate
+
+## If this project helps you in anyway, show your love :heart: by putting a :star: on this project :v:
+
+
+## Contributing
+
+Please fork this repository and contribute back using
+[pull requests](https://github.com/happysingh23828/Android-Clean-Architecture/pulls).
+
+Any contributions, large or small, major features, bug fixes, are welcomed and appreciated
+but will be thoroughly reviewed .
+
+### Contact - Let's become friend
+- [Androchef Blog](https://androchef.com/)
+- [Androchef Youtube](https://www.youtube.com/channel/UCILhpbLSFkGzsiCYAeR30DA)
+- [Github](https://github.com/happysingh23828)
+- [Linkedin](https://www.linkedin.com/in/happpysingh23828/)
+
+
