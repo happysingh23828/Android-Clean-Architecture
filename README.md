@@ -1,5 +1,5 @@
 <p align="center">
- <center><img width="100%%"  src="files/android_clean_architecture.png"></a></center>
+ <center><img width="100%%"  src="files/android_clean_architecture_banner.png"></a></center>
 </p>
 
 # Android Clean Architecture 
