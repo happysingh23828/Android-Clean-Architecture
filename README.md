@@ -16,7 +16,7 @@ This is a sample movie list  Android application 📱 built to demonstrate use o
 
 ***You can Install and test latest app from below 👇***
 
-[![Clean Architecture App](https://img.shields.io/badge/CleanArchitecture🍲-APK-red.svg?style=for-the-badge&logo=android)](https://github.com/happysingh23828/raw/master/Android-Clean-Architecture/files/clean-arc.apk)
+[![Clean Architecture App](https://img.shields.io/badge/CleanArchitecture🍲-APK-red.svg?style=for-the-badge&logo=android)](https://github.com/happysingh23828/Android-Clean-Architecture/raw/master/files/clean-arc.apk)
 
 ## - How to build on your environment
 Add your API key in **local.properties** file.
