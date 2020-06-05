@@ -26,10 +26,9 @@ jobs:
       - name: Running detekt
         run: bash ./gradlew detekt --stacktrace
 
-
-
   # Running Unit Test Cases
   unitTest:
+    needs: lint
     name: Running Unit Tests
     runs-on: ubuntu-18.04
 
@@ -44,6 +43,7 @@ jobs:
 
   #Generating Apk.
   apk:
+    needs: [lint, unitTest]
     name: Generate APK
     runs-on: ubuntu-18.04
 
