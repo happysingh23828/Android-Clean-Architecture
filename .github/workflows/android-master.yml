@@ -24,7 +24,7 @@ jobs:
         run: bash ./gradlew ktlint --stacktrace
 
       - name: Running detekt
-          run: bash ./gradlew detekt --stacktrace
+        run: bash ./gradlew detekt --stacktrace
 
 
 
