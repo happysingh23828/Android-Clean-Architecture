@@ -21,10 +21,10 @@ jobs:
           java-version: 1.8
 
       - name: Running Ktlint
-        run: bash ./gradlew ktlint --stacktrace
+        run: bash ./gradlew ktlint
 
       - name: Running detekt
-        run: bash ./gradlew detekt --stacktrace
+        run: bash ./gradlew detekt
 
   # Running Unit Test Cases
   unitTest:
