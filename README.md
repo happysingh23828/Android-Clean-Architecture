@@ -34,6 +34,7 @@ It has feature of bookmark movie which will be stored locally.
 - It has cache expiration feature [5 minutes].
 - Unit testing written for all layers.
 - Multi Module Code Coverage reports using Jacoco.
+- static code analyses added by using detekt, ktlint.
 - Android CI github action integration. 
 - [S.O.L.I.D](https://en.wikipedia.org/wiki/SOLID) priciple followed for more understandable, flexible and maintainable.
 
@@ -58,6 +59,8 @@ Clean Architecture will not be appropriate for every project, so it is down to y
 - [Mockito](http://site.mockito.org/) - Most popular mocking framework for Java/kotlin.
 - [Robolectric](http://robolectric.org/) - allows you to write unit tests and run them on a desktop JVM while still using Android API.
 - [Stetho](https://github.com/facebook/stetho) - Stetho is a debug bridge for Android applications, enabling the powerful Chrome Developer Tools and much more.
+- [Detekt](https://detekt.github.io/detekt/) - Detekt is a static analyze tool for the Kotlin language. It's open sourc.
+- [Ktlint](https://github.com/pinterest/ktlint) -Ktlint is a static code analysis tool maintain by Pinterest. Linter and formatter for Kotlin code.
 
 ## - Clean Architecture
 
@@ -119,7 +122,30 @@ This projects uses [jacoco plugin](https://www.jacoco.org/jacoco/) for generate 
   `-/cache/build/reports/jacoco/debug/index.html`<br>
   `-/presentattion/build/reports/jacoco/debug/index.html` <br>
  
+ 
+## - Code Quality Checks
+This projects uses detekt, ktlint static code analyser and auto formatter in CI/CD pipeline to maintain code quality. they also genrated reports.
+
+  #### Run detekt locally
+  Use `./gradlew detekt`
   
+  Reports location for each module-<br>
+  `-/cache/build/reports/detekt/report.html`<br>
+  `-/domain/build/reports/detekt/report.html`<br>
+  `-/remote/build/reports/detekt/report.html`<br>
+
+  #### Run ktlint locally
+  Use `./gradlew ktlint`
+
+  Reports location for each module-<br>
+  `-/app/build/reports/ktlint/ktlint-checkstyle-report.xml`<br>
+  `-/cache/build/reports/ktlint/ktlint-checkstyle-report.xml`<br>
+  `-/presentattion/build/reports/ktlint/ktlint-checkstyle-report.xml` <br>
+ 
+  #### Run ktlint formatter locally
+  Use `./gradlew ktlintFormat`
+  
+
 ## - Current App's Architecture
 This app uses [***MVVM (Model View View-Model)***](https://developer.android.com/jetpack/docs/guide#recommended-app-arch) architecture.
 
