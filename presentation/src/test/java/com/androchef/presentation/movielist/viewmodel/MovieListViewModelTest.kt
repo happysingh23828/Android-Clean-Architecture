@@ -26,7 +26,6 @@ import org.mockito.Mockito.`when`
 import org.mockito.Mockito.verify
 import org.mockito.MockitoAnnotations
 
-
 @RunWith(JUnit4::class)
 class MovieListViewModelTest {
 
@@ -53,7 +52,6 @@ class MovieListViewModelTest {
 
     private lateinit var postExecutionThread: PostExecutionThread
 
-
     @Before
     fun setUp() {
         MockitoAnnotations.initMocks(this)
@@ -74,7 +72,6 @@ class MovieListViewModelTest {
             BookmarkMovieUseCase(movieRepository, threadExecutor, postExecutionThread)
         unBookmarkMovieUseCase =
             UnBookmarkMovieUseCase(movieRepository, threadExecutor, postExecutionThread)
-
     }
 
     private fun setUpViewModel() {
@@ -87,36 +84,35 @@ class MovieListViewModelTest {
         movieListViewModel.stateObservable.observeForever(stateObserver)
     }
 
-
     @Test
     fun fetchMoviesList_returnsEmpty() {
-        //Arrange
+        // Arrange
         stubFetchMovies(Single.just(listOf()))
 
-        //Act
+        // Act
         movieListViewModel.fetchMoviesList()
 
-        //Assert
+        // Assert
         verify(stateObserver).onChanged(MovieState.Loading)
         verify(stateObserver).onChanged(MovieState.MovieListSuccess(listOf()))
     }
 
     @Test
     fun fetchMoviesList_returnsError() {
-        //Arrange
+        // Arrange
         stubFetchMovies(Single.error(TestingException(TestingException.GENERIC_EXCEPTION_MESSAGE)))
 
-        //Act
+        // Act
         movieListViewModel.fetchMoviesList()
 
-        //Assert
+        // Assert
         verify(stateObserver).onChanged(MovieState.Loading)
         verify(stateObserver).onChanged(MovieState.Error(TestingException.GENERIC_EXCEPTION_MESSAGE))
     }
 
     @Test
     fun fetchMoviesList_returnsData() {
-        //Arrange
+        // Arrange
         val listOfMovies = PresentationMovieFactory.generateListOfMovies(10)
         val listOfViews = mutableListOf<MovieView>()
         listOfMovies.forEach {
@@ -124,87 +120,87 @@ class MovieListViewModelTest {
         }
         stubFetchMovies(Single.just(listOfMovies))
 
-        //Act
+        // Act
         movieListViewModel.fetchMoviesList()
 
-        //Assert
+        // Assert
         verify(stateObserver).onChanged(MovieState.Loading)
         verify(stateObserver).onChanged(MovieState.MovieListSuccess(listOfViews))
     }
 
     @Test
     fun bookmarkMovie_error() {
-        //Arrange
+        // Arrange
         val listOfMovies = PresentationMovieFactory.generateListOfMovies(10)
 
-        val movieToBookmark = listOfMovies[0] //taking first movie and making it to as Bookmarked.
+        val movieToBookmark = listOfMovies[0] // taking first movie and making it to as Bookmarked.
         movieToBookmark.isBookMarked = true
-        val movieView = movieMapper.mapToView(movieToBookmark) //mapping to movieView
+        val movieView = movieMapper.mapToView(movieToBookmark) // mapping to movieView
 
         stubFetchMovies(Single.just(listOfMovies))
         stubBookMarkMovie(movieToBookmark.id!!, Completable.error(TestingException()))
 
-        //Act
+        // Act
         movieListViewModel.onBookmarkStatusChanged(movieView)
 
-        //Assert
+        // Assert
         verify(stateObserver).onChanged(MovieState.Error(TestingException.GENERIC_EXCEPTION_MESSAGE))
     }
 
     @Test
     fun bookmarkMovie_completes() {
-        //Arrange
+        // Arrange
         val listOfMovies = PresentationMovieFactory.generateListOfMovies(10)
 
-        val movieToBookmark = listOfMovies[0] //taking first movie and making it to as Bookmarked.
+        val movieToBookmark = listOfMovies[0] // taking first movie and making it to as Bookmarked.
         movieToBookmark.isBookMarked = true
-        val movieView = movieMapper.mapToView(movieToBookmark) //mapping to movieView
+        val movieView = movieMapper.mapToView(movieToBookmark) // mapping to movieView
 
         stubFetchMovies(Single.just(listOfMovies))
         stubBookMarkMovie(movieToBookmark.id!!, Completable.complete())
 
-        //Act
+        // Act
         movieListViewModel.onBookmarkStatusChanged(movieView)
 
-        //Assert
+        // Assert
         verify(stateObserver).onChanged(MovieState.BookmarkChangeSuccess)
     }
 
     @Test
     fun unBookmarkMovie_error() {
-        //Arrange
+        // Arrange
         val listOfMovies = PresentationMovieFactory.generateListOfMovies(10)
 
-        val movieToUnBookmark = listOfMovies[0] //taking first movie and making it to as UnBookmark.
+        val movieToUnBookmark = listOfMovies[0] // taking first movie and making it to as UnBookmark.
         movieToUnBookmark.isBookMarked = false
-        val movieView = movieMapper.mapToView(movieToUnBookmark) //mapping to movieView
+        val movieView = movieMapper.mapToView(movieToUnBookmark) // mapping to movieView
 
         stubFetchMovies(Single.just(listOfMovies))
         stubUnBookMarkMovie(movieToUnBookmark.id!!, Completable.error(TestingException()))
 
-        //Act
+        // Act
         movieListViewModel.onBookmarkStatusChanged(movieView)
 
-        //Assert
+        // Assert
         verify(stateObserver).onChanged(MovieState.Error(TestingException.GENERIC_EXCEPTION_MESSAGE))
     }
 
     @Test
     fun unBookmarkMovie_completes() {
-        //Arrange
+        // Arrange
         val listOfMovies = PresentationMovieFactory.generateListOfMovies(10)
 
-        val movieToUnBookmark = listOfMovies[0] //taking first movie and making it to as UnBookmark.
+        val movieToUnBookmark = listOfMovies[0] // taking first movie and making it to as UnBookmark.
         movieToUnBookmark.isBookMarked = false
-        val movieView = movieMapper.mapToView(movieToUnBookmark) //mapping to movieView
+        val movieView = movieMapper.mapToView(movieToUnBookmark) // mapping to movieView
 
         stubFetchMovies(Single.just(listOfMovies))
         stubUnBookMarkMovie(movieToUnBookmark.id!!, Completable.complete())
 
-        //Act
+        // Act
         movieListViewModel.onBookmarkStatusChanged(movieView)
 
-        //Assert
+        // Assert
         verify(stateObserver).onChanged(MovieState.BookmarkChangeSuccess)
     }
 

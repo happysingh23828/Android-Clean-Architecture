@@ -3,8 +3,8 @@ package com.androchef.cleanarc.injection.modules
 import com.androchef.data.MoviesDataRepository
 import com.androchef.data.executor.JobExecutor
 import com.androchef.domain.CompletableUseCase
-import com.androchef.domain.executor.ThreadExecutor
 import com.androchef.domain.SingleUseCase
+import com.androchef.domain.executor.ThreadExecutor
 import com.androchef.domain.interactor.moviecredits.GetMovieCreditsUseCase
 import com.androchef.domain.interactor.movielist.BookmarkMovieUseCase
 import com.androchef.domain.interactor.movielist.GetMovieListUseCase
@@ -14,7 +14,6 @@ import com.androchef.domain.models.movies.MovieCredits
 import com.androchef.domain.repositories.MovieRepository
 import dagger.Module
 import dagger.Provides
-import io.reactivex.Completable
 import javax.inject.Singleton
 
 @Module
@@ -34,20 +33,20 @@ class DomainModule {
 
     @Provides
     @Singleton
-    fun provideGetMovieCreditsUseCase(getMovieCreditsUseCase: GetMovieCreditsUseCase) :
+    fun provideGetMovieCreditsUseCase(getMovieCreditsUseCase: GetMovieCreditsUseCase):
             SingleUseCase<GetMovieCreditsUseCase.Params, MovieCredits> {
         return getMovieCreditsUseCase
     }
 
     @Provides
     @Singleton
-    fun provideBookmarkMovieUseCase(bookmarkMovieUseCase: BookmarkMovieUseCase) : CompletableUseCase<Long> {
+    fun provideBookmarkMovieUseCase(bookmarkMovieUseCase: BookmarkMovieUseCase): CompletableUseCase<Long> {
         return bookmarkMovieUseCase
     }
 
     @Provides
     @Singleton
-    fun provideUnBookmarkMovieUseCase(unBookmarkMovieUseCase: UnBookmarkMovieUseCase) : CompletableUseCase<Long> {
+    fun provideUnBookmarkMovieUseCase(unBookmarkMovieUseCase: UnBookmarkMovieUseCase): CompletableUseCase<Long> {
         return unBookmarkMovieUseCase
     }
 
@@ -56,5 +55,4 @@ class DomainModule {
     fun bindThreadExecutor(jobExecutor: JobExecutor): ThreadExecutor {
         return jobExecutor
     }
-
 }

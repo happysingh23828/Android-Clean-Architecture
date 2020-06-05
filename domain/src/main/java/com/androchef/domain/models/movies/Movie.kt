@@ -19,6 +19,6 @@ data class Movie(
     var video: Boolean = false,
     var vote_average: Double? = 0.0,
     var vote_count: Int = 0,
-    var isBookMarked : Boolean
+    var isBookMarked: Boolean
 
 )

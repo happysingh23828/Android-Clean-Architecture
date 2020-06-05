@@ -5,9 +5,9 @@ import com.androchef.cache.models.CachedMovie
 import com.androchef.data.models.MovieEntity
 import javax.inject.Inject
 
-class MovieEntityMapper @Inject constructor() : EntityMapper<CachedMovie,MovieEntity> {
+class MovieEntityMapper @Inject constructor() : EntityMapper<CachedMovie, MovieEntity> {
     override fun mapFromCached(type: CachedMovie): MovieEntity {
-        return  MovieEntity(
+        return MovieEntity(
             id = type.movieId,
             movieTitle = type.title,
             movieName = type.name,

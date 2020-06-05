@@ -21,13 +21,13 @@ class MovieMapperTest {
 
     @Test
     fun mapToView() {
-        //Arrange
+        // Arrange
         val movie = PresentationMovieFactory.generateMovie()
 
-        //Act
+        // Act
         val movieView = movieMapper.mapToView(movie)
 
-        //Assert
+        // Assert
         assertMovieMapDataEqual(movieView, movie)
     }
 

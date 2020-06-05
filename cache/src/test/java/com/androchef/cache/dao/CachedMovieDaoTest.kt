@@ -11,7 +11,7 @@ import org.robolectric.RobolectricTestRunner
 import org.robolectric.RuntimeEnvironment
 import org.robolectric.annotation.Config
 
-@Config(manifest= Config.NONE)
+@Config(manifest = Config.NONE)
 @RunWith(RobolectricTestRunner::class)
 class CachedMovieDaoTest {
 
@@ -28,118 +28,115 @@ class CachedMovieDaoTest {
 
     @Test
     fun addMovieToDatabase() {
-        //Arrange
+        // Arrange
         val cachedMovie = CachedMovieFactory.generateCachedMovie()
 
-        //Act
+        // Act
         movieDatabase.cachedMovieDao().addMovie(cachedMovie)
 
-        //Assert
+        // Assert
         val cachedMovies = movieDatabase.cachedMovieDao().getMovies()
         assert(cachedMovies.isNotEmpty())
     }
 
-
     @Test
     fun bookmarkMovie_completes() {
-        //Arrange
+        // Arrange
         val cachedMovie = CachedMovieFactory.generateCachedMovie()
         cachedMovie.isBookMarked = false
         movieDatabase.cachedMovieDao().addMovie(cachedMovie)
 
-
-        //Act
+        // Act
         movieDatabase.cachedMovieDao().bookmarkMovie(cachedMovie.movieId)
 
-        //Assert
+        // Assert
         val bookmarkedMovieList = movieDatabase.cachedMovieDao().getBookMarkedMovies()
         assert(bookmarkedMovieList.isNotEmpty())
     }
 
     @Test
     fun unBookmarkMovie_completes() {
-        //Arrange
+        // Arrange
         val cachedMovie = CachedMovieFactory.generateCachedMovie()
         cachedMovie.isBookMarked = true
         movieDatabase.cachedMovieDao().addMovie(cachedMovie)
 
-
-        //Act
+        // Act
         movieDatabase.cachedMovieDao().unBookmarkMovie(cachedMovie.movieId)
 
-        //Assert
+        // Assert
         val bookmarkedMovieList = movieDatabase.cachedMovieDao().getBookMarkedMovies()
         assert(bookmarkedMovieList.isEmpty())
     }
 
     @Test
     fun clearMovies_completes() {
-        //Arrange
+        // Arrange
         val cachedMovies = CachedMovieFactory.generateListOfCachedMovie(8)
-        repeat(cachedMovies.size){
+        repeat(cachedMovies.size) {
             movieDatabase.cachedMovieDao().addMovie(cachedMovies[it])
         }
 
-        //Act
+        // Act
         movieDatabase.cachedMovieDao().clearMovies()
 
-        //Assert
+        // Assert
         val movies = movieDatabase.cachedMovieDao().getMovies()
         assert(movies.isEmpty())
     }
 
     @Test
     fun getBookMarkedMovies_returnsEmpty() {
-        //Arrange
+        // Arrange
         val cachedMovie = CachedMovieFactory.generateCachedMovie()
         cachedMovie.isBookMarked = false
         movieDatabase.cachedMovieDao().addMovie(cachedMovie)
 
-        //Act
-        val bookmarkedCachedMovies  = movieDatabase.cachedMovieDao().getBookMarkedMovies()
+        // Act
+        val bookmarkedCachedMovies = movieDatabase.cachedMovieDao().getBookMarkedMovies()
 
-        //Assert
+        // Assert
         assert(bookmarkedCachedMovies.isEmpty())
     }
 
     @Test
     fun getBookMarkedMovies_returnsData() {
-        //Arrange
+        // Arrange
         val cachedMovie = CachedMovieFactory.generateCachedMovie()
         cachedMovie.isBookMarked = true
         movieDatabase.cachedMovieDao().addMovie(cachedMovie)
 
-        //Act
-        val bookmarkedCachedMovies  = movieDatabase.cachedMovieDao().getBookMarkedMovies()
+        // Act
+        val bookmarkedCachedMovies = movieDatabase.cachedMovieDao().getBookMarkedMovies()
 
-        //Assert
+        // Assert
         assert(bookmarkedCachedMovies.isNotEmpty())
     }
 
     @Test
     fun getMovies_returnData() {
-        //Arrange
+        // Arrange
         val cachedMovies = CachedMovieFactory.generateListOfCachedMovie(8)
-        repeat(cachedMovies.size){
+        repeat(cachedMovies.size) {
             movieDatabase.cachedMovieDao().addMovie(cachedMovies[it])
         }
 
-        //Act
+        // Act
         val movies = movieDatabase.cachedMovieDao().getMovies()
 
-        //Assert
+        // Assert
         assert(movies.size == cachedMovies.size)
     }
 
     @Test
     fun getMovies_returnEmpty() {
-        //Arrange
-        //No Arrangement needed
+        // Arrange
+        // No Arrangement needed
 
-        //Act
+        // Act
         val movies = movieDatabase.cachedMovieDao().getMovies()
 
-        //Assert
+        // Assert
         assert(movies.isEmpty())
     }
 

@@ -1,11 +1,10 @@
 package com.androchef.remote.services.intercepter
 
+import java.io.IOException
 import okhttp3.Interceptor
 import okhttp3.Response
-import java.io.IOException
 
-
-class AuthorizationInterceptor(private val apiKey : String) : Interceptor {
+class AuthorizationInterceptor(private val apiKey: String) : Interceptor {
 
     @Throws(IOException::class)
     override fun intercept(chain: Interceptor.Chain): Response {

@@ -1,8 +1,8 @@
 package com.androchef.domain.interactor.movielist
 
+import com.androchef.domain.SingleUseCase
 import com.androchef.domain.executor.PostExecutionThread
 import com.androchef.domain.executor.ThreadExecutor
-import com.androchef.domain.SingleUseCase
 import com.androchef.domain.models.movies.Movie
 import com.androchef.domain.repositories.MovieRepository
 import io.reactivex.Single

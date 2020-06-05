@@ -1,6 +1,6 @@
 package com.androchef.data.models
 
-data class CastEntity (
+data class CastEntity(
     var character: String = "",
     var id: Int = 0,
     var name: String = "",

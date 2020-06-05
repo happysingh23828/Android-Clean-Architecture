@@ -25,7 +25,6 @@ class MovieDataStoreFactoryTest {
 
     private lateinit var movieDataStoreFactory: MovieDataStoreFactory
 
-
     @Before
     fun setUp() {
         movieCacheDataStore = MovieCacheDataStore(movieCache)
@@ -36,48 +35,46 @@ class MovieDataStoreFactoryTest {
 
     @Test
     fun movieDataStoreFactory_getDataStore_noCache_returnRemoteStore() {
-        //Arrange
+        // Arrange
         stubMovieCacheIsCached(Single.just(false))
 
-        //Act
+        // Act
         val movieDataStore = movieDataStoreFactory.getDataStore(false)
 
-        //Assert
+        // Assert
         assert(movieDataStore is MovieRemoteDataStore)
     }
 
     @Test
     fun movieDataStoreFactory_getDataStore_expiredCache_returnRemoteStore() {
-        //Arrange
+        // Arrange
         stubMovieCacheIsCached(Single.just(true))
         stubMovieCacheIsExpired(true)
 
-        //Act
+        // Act
         val movieDataStore = movieDataStoreFactory.getDataStore(true)
 
-        //Assert
+        // Assert
         assert(movieDataStore is MovieRemoteDataStore)
     }
 
     @Test
     fun movieDataStoreFactory_getDataStore_returnRemoteDataStore() {
-        //Act
+        // Act
         val movieDataStore = movieDataStoreFactory.getRemoteDataStore()
 
-        //Assert
+        // Assert
         assert(movieDataStore is MovieRemoteDataStore)
     }
 
     @Test
     fun movieDataStoreFactory_getDataStore_returnCacheDataStore() {
-        //Act
+        // Act
         val movieDataStore = movieDataStoreFactory.getCacheDataStore()
 
-        //Assert
+        // Assert
         assert(movieDataStore is MovieCacheDataStore)
     }
-
-
 
     /**
      * Stub helper methods
@@ -90,5 +87,4 @@ class MovieDataStoreFactoryTest {
     private fun stubMovieCacheIsExpired(isExpired: Boolean) {
         `when`(movieCache.isExpired()).thenReturn(isExpired)
     }
-
 }

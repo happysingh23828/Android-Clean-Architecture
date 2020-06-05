@@ -4,11 +4,9 @@ import com.androchef.domain.executor.PostExecutionThread
 import com.androchef.domain.executor.ThreadExecutor
 import io.reactivex.Completable
 import io.reactivex.Scheduler
-import io.reactivex.Single
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
 import io.reactivex.observers.DisposableCompletableObserver
-import io.reactivex.observers.DisposableSingleObserver
 import io.reactivex.schedulers.Schedulers
 
 abstract class CompletableUseCase<in Params> constructor(
@@ -25,7 +23,7 @@ abstract class CompletableUseCase<in Params> constructor(
         addDisposable(completable.subscribeWith(observer))
     }
 
-    open fun execute(singleObserver: DisposableCompletableObserver, params: Params? = null,scheduler: Scheduler) {
+    open fun execute(singleObserver: DisposableCompletableObserver, params: Params? = null, scheduler: Scheduler) {
         val single = this.buildUseCaseObservable(params).subscribeOn(
             Schedulers.from(threadExecutor)
         ).observeOn(scheduler)
@@ -41,5 +39,4 @@ abstract class CompletableUseCase<in Params> constructor(
     private fun addDisposable(disposable: Disposable) {
         disposables.add(disposable)
     }
-
 }

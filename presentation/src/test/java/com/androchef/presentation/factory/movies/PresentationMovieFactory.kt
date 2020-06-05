@@ -5,23 +5,22 @@ import com.androchef.presentation.factory.DataFactory
 import com.androchef.presentation.movielist.mapper.MovieMapper
 import com.androchef.presentation.movielist.models.MovieView
 
-
 object PresentationMovieFactory {
 
-    fun generateListOfMovieViews(size : Int): MutableList<MovieView> {
+    fun generateListOfMovieViews(size: Int): MutableList<MovieView> {
         val listOfMoviesViews = mutableListOf<MovieView>()
-        repeat(size){
+        repeat(size) {
             listOfMoviesViews.add(generateMovieView())
         }
         return listOfMoviesViews
     }
 
-    fun generateListOfMovies(size: Int) : MutableList<Movie>{
+    fun generateListOfMovies(size: Int): MutableList<Movie> {
         val listOfMovies = mutableListOf<Movie>()
-        repeat(size){
+        repeat(size) {
             listOfMovies.add(generateMovie())
         }
-        return  listOfMovies
+        return listOfMovies
     }
 
     fun generateMovieView(): MovieView {
@@ -57,5 +56,4 @@ object PresentationMovieFactory {
             vote_count = DataFactory.getRandomInt()
         )
     }
-
 }

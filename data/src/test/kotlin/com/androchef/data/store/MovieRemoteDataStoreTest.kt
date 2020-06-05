@@ -27,50 +27,49 @@ class MovieRemoteDataStoreTest {
 
     @Test
     fun movieRemoteDataStore_getPopularMovies_returnsData() {
-        //Arrange
+        // Arrange
         val movieList = MovieEntityFactory.generateDummyMoviesEntities(5)
         stubMovieRemoteGetPopularMovies(Single.just(movieList))
 
-        //Act
+        // Act
         val testObserver = movieRemoteDataStore.getPopularMovies().test()
 
-        //Assert
+        // Assert
         testObserver.assertValue(movieList)
     }
 
     @Test(expected = UnsupportedOperationException::class)
     fun movieRemoteDataStore_getBookMarkedMovies_exception() {
-        //Act
+        // Act
         movieRemoteDataStore.getBookMarkedMovies().test()
     }
 
     @Test(expected = UnsupportedOperationException::class)
     fun movieRemoteDataStore_setMovieBookmarked_exception() {
-        //Arrange
+        // Arrange
         val movieId = DataFactory.getRandomLong()
 
-        //Act
+        // Act
         movieRemoteDataStore.setMovieBookmarked(movieId).test()
     }
 
     @Test(expected = UnsupportedOperationException::class)
     fun movieRemoteDataStore_setMovieUnBookmarked_exception() {
-        //Arrange
+        // Arrange
         val movieId = DataFactory.getRandomLong()
 
-        //Act
+        // Act
         movieRemoteDataStore.setMovieUnBookMarked(movieId).test()
     }
 
     @Test(expected = UnsupportedOperationException::class)
     fun movieRemoteDataStore_saveMovies_exception() {
-        //Arrange
+        // Arrange
         val moviesList = MovieEntityFactory.generateDummyMoviesEntities(4)
 
-        //Act
+        // Act
         movieRemoteDataStore.saveMovies(moviesList).test()
     }
-
 
     /**
      * Stub Helper methods
@@ -79,5 +78,4 @@ class MovieRemoteDataStoreTest {
         `when`(movieRemote.getPopularMovies())
             .thenReturn(single)
     }
-
 }

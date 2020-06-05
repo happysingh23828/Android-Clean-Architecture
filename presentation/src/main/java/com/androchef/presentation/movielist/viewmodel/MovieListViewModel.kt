@@ -50,9 +50,9 @@ class MovieListViewModel constructor(
             }
         }
         if (movieView.isBookMarked)
-            bookmarkMovieUseCase.execute(singleObserver,movieView.id)
+            bookmarkMovieUseCase.execute(singleObserver, movieView.id)
         else
-            unBookmarkMovieUseCase.execute(singleObserver,movieView.id)
+            unBookmarkMovieUseCase.execute(singleObserver, movieView.id)
     }
 
     override val stateObservable: MutableLiveData<MovieState> by lazy {

@@ -23,7 +23,7 @@ class UnBookmarkMovieUseCaseTest {
     @Mock
     lateinit var postExecutionThread: PostExecutionThread
 
-    lateinit var unBookmarkMovieUseCase : UnBookmarkMovieUseCase
+    lateinit var unBookmarkMovieUseCase: UnBookmarkMovieUseCase
 
     @Before
     fun setUp() {
@@ -33,26 +33,26 @@ class UnBookmarkMovieUseCaseTest {
 
     @Test
     fun buildUseCaseObservable_callRepository() {
-        //Arrange
-        //No Arrangement for this test case
+        // Arrange
+        // No Arrangement for this test case
 
-        //Act
+        // Act
         unBookmarkMovieUseCase.buildUseCaseObservable(2)
 
-        //Assert
+        // Assert
         Mockito.verify(movieRepository).unBookmarkMovie(2)
     }
 
     @Test
     fun buildUseCaseObservable_completes() {
-        //Arrange
+        // Arrange
         val movieId = 3L
         stubMovieRepositoryUnBookmarkMovie(movieId, Completable.complete())
 
-        //Act
+        // Act
         val test = movieRepository.unBookmarkMovie(movieId).test()
 
-        //Assert
+        // Assert
         test.assertComplete()
     }
 
@@ -60,6 +60,4 @@ class UnBookmarkMovieUseCaseTest {
         Mockito.`when`(movieRepository.unBookmarkMovie(movieId))
             .thenReturn(completable)
     }
-
-
 }

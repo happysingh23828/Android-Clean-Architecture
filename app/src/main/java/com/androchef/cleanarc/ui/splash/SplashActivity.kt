@@ -14,6 +14,6 @@ class SplashActivity : AppCompatActivity() {
         Handler().postDelayed({
             MovieListActivity.start(this)
             finish()
-        },2000)
+        }, 2000)
     }
 }

@@ -2,7 +2,7 @@ package com.androchef.remote.models.movies
 
 import com.google.gson.annotations.SerializedName
 
-class MovieModel (
+class MovieModel(
 
     @SerializedName("adult")
     var adult: Boolean = false,

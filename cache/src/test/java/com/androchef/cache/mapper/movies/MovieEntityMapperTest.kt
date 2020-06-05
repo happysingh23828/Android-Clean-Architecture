@@ -14,7 +14,6 @@ class MovieEntityMapperTest {
 
     lateinit var movieEntityMapper: MovieEntityMapper
 
-
     @Before
     fun setUp() {
         movieEntityMapper = MovieEntityMapper()
@@ -22,26 +21,26 @@ class MovieEntityMapperTest {
 
     @Test
     fun mapFromCached() {
-        //Arrange
+        // Arrange
         val cacheMovie = CachedMovieFactory.generateCachedMovie()
 
-        //Act
+        // Act
         val movieEntity = movieEntityMapper.mapFromCached(cacheMovie)
 
-        //Assert
-        assertMovieDataEquality(cacheMovie,movieEntity)
+        // Assert
+        assertMovieDataEquality(cacheMovie, movieEntity)
     }
 
     @Test
     fun mapToCache() {
-        //Arrange
+        // Arrange
         val movieEntity = CachedMovieFactory.generateMovieEntity()
 
-        //Act
+        // Act
         val cacheMovie = movieEntityMapper.mapToCached(movieEntity)
 
-        //Assert
-        assertMovieDataEquality(cacheMovie,movieEntity)
+        // Assert
+        assertMovieDataEquality(cacheMovie, movieEntity)
     }
 
     private fun assertMovieDataEquality(cachedMovie: CachedMovie, movieEntity: MovieEntity) {

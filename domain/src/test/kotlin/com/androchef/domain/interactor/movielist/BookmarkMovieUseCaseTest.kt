@@ -5,8 +5,6 @@ import com.androchef.domain.executor.ThreadExecutor
 import com.androchef.domain.repositories.MovieRepository
 import io.reactivex.Completable
 import org.junit.Before
-
-import org.junit.Assert.*
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.mockito.Mock
@@ -36,35 +34,31 @@ class BookmarkMovieUseCaseTest {
 
     @Test
     fun buildUseCaseObservable_callRepository() {
-        //Arrange
-        //No Arrangement for this test case
+        // Arrange
+        // No Arrangement for this test case
 
-        //Act
+        // Act
         bookmarkMovieUseCase.buildUseCaseObservable(2)
 
-        //Assert
+        // Assert
         verify(movieRepository).bookmarkMovie(2)
     }
 
     @Test
     fun buildUseCaseObservable_completes() {
-        //Arrange
+        // Arrange
         val movieId = 3L
         stubMovieRepositoryBookmarkMovie(movieId, Completable.complete())
 
-        //Act
+        // Act
         val test = movieRepository.bookmarkMovie(movieId).test()
 
-        //Assert
+        // Assert
         test.assertComplete()
     }
 
-    private fun stubMovieRepositoryBookmarkMovie(movieId : Long,completable: Completable) {
+    private fun stubMovieRepositoryBookmarkMovie(movieId: Long, completable: Completable) {
         `when`(movieRepository.bookmarkMovie(movieId))
             .thenReturn(completable)
     }
-
-
-
-
 }

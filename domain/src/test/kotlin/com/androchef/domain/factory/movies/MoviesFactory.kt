@@ -5,7 +5,7 @@ import com.androchef.domain.models.movies.Movie
 
 object MoviesFactory {
 
-    fun generateDummyMovieList(size: Int) : List<Movie> {
+    fun generateDummyMovieList(size: Int): List<Movie> {
         val movieList = mutableListOf<Movie>()
         repeat(size) {
             movieList.add(generateMovie())
@@ -36,5 +36,4 @@ object MoviesFactory {
             vote_count = DataFactory.getRandomInt()
         )
     }
-
 }

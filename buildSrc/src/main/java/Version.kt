@@ -10,7 +10,7 @@ object Version {
     const val versionCode = 1
     const val versionName = "1.0"
 
-    //Libraries
+    // Libraries
     const val supportLib = "28.0.0"
     const val recyclerView = "1.0.0"
     const val androidx = "1.0.0"
@@ -48,6 +48,6 @@ object Version {
     const val rxBinding = "3.0.0"
     const val stetho = "1.5.1"
 
-    //plugins versions
+    // plugins versions
     const val detektVersion = "1.9.1"
 }

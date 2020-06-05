@@ -18,26 +18,26 @@ class MovieMapperTest {
 
     @Test
     fun mapFromEntity() {
-        //Arrange
+        // Arrange
         val movieEntity = MovieEntityFactory.generateMovieEntity()
 
-        //Act
+        // Act
         val movie = movieMapper.mapFromEntity(movieEntity)
 
-        //Assert
-        assertMovieDataEquality(movieEntity,movie)
+        // Assert
+        assertMovieDataEquality(movieEntity, movie)
     }
 
     @Test
     fun mapToEntity() {
-        //Arrange
+        // Arrange
         val movie = MovieEntityFactory.generateMovie()
 
-        //Act
+        // Act
         val movieEntity = movieMapper.mapToEntity(movie)
 
-        //Assert
-        assertMovieDataEquality(movieEntity,movie)
+        // Assert
+        assertMovieDataEquality(movieEntity, movie)
     }
 
     /**

@@ -44,7 +44,7 @@ class MovieListAdapter(
         holder.bind(listOfMovieView[position])
     }
 
-    inner class MovieListViewHolder(private val mView : View) : RecyclerView.ViewHolder(mView) {
+    inner class MovieListViewHolder(private val mView: View) : RecyclerView.ViewHolder(mView) {
 
         fun bind(movieView: MovieView) {
             mView.tvMovieName.text = movieView.movieName
@@ -66,9 +66,7 @@ class MovieListAdapter(
         }
     }
 
-
     interface OnBookmarkClickedListener {
         fun onBookmarkChanged(movieView: MovieView)
     }
-
 }

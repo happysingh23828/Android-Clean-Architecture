@@ -15,14 +15,13 @@ object MovieEntityFactory {
         return mutableMovieEntityList
     }
 
-    fun generateDummyMovieList(size: Int) : List<Movie> {
+    fun generateDummyMovieList(size: Int): List<Movie> {
         val movieList = mutableListOf<Movie>()
         repeat(size) {
             movieList.add(generateMovie())
         }
         return movieList
     }
-
 
     fun generateMovieEntity(): MovieEntity {
         return MovieEntity(
@@ -59,6 +58,4 @@ object MovieEntityFactory {
             vote_count = DataFactory.getRandomInt()
         )
     }
-
-
 }

@@ -20,11 +20,11 @@ import com.androchef.presentation.movielist.mapper.MovieMapper
 import com.androchef.presentation.movielist.models.MovieView
 import com.androchef.presentation.movielist.viewmodel.MovieListViewModel
 import com.androchef.presentation.movielist.viewmodel.MovieState
+import javax.inject.Inject
 import kotlinx.android.synthetic.main.activity_movie_list.*
 import kotlinx.android.synthetic.main.layout_error_state.view.*
-import javax.inject.Inject
 
-class MovieListActivity : AppCompatActivity(),MovieListAdapter.OnBookmarkClickedListener {
+class MovieListActivity : AppCompatActivity(), MovieListAdapter.OnBookmarkClickedListener {
 
     companion object {
         fun start(context: Context) {
@@ -104,7 +104,6 @@ class MovieListActivity : AppCompatActivity(),MovieListAdapter.OnBookmarkClicked
             fetchMovies()
         }
     }
-
 
     private fun showMovieListToUI(listOfMovieViews: List<MovieView>) {
         hideLoading()

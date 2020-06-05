@@ -5,14 +5,12 @@ import com.androchef.data.models.MovieEntity
 import com.androchef.data.repository.MovieDataStore
 import com.androchef.data.repository.MoviesCache
 import io.reactivex.Completable
-import io.reactivex.Flowable
 import io.reactivex.Single
 import javax.inject.Inject
 
 class MovieCacheDataStore @Inject constructor(
     private val moviesCache: MoviesCache
 ) : MovieDataStore {
-
 
     override fun getBookMarkedMovies(): Single<List<MovieEntity>> {
         return moviesCache.getBookMarkedMovies()
