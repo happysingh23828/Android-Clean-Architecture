@@ -47,9 +47,9 @@ class MovieMapperTest {
         assertEquals(movieEntity.id, movie.id)
         assertEquals(movieEntity.movieName, movie.name)
         assertEquals(movieEntity.movieTitle, movie.title)
-        assertEquals(movieEntity.posterPath, movie.poster_path)
-        assertEquals(movieEntity.voteAverage, movie.vote_average)
-        assertEquals(movieEntity.profilePath, movie.profile_path)
+        assertEquals(movieEntity.posterPath, movie.posterPath)
+        assertEquals(movieEntity.voteAverage, movie.voteAverage)
+        assertEquals(movieEntity.profilePath, movie.profilePath)
         assertEquals(movieEntity.isBookMarked, movie.isBookMarked)
     }
 }

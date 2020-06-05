@@ -13,7 +13,7 @@ class MovieModelEntityMapper @Inject constructor() :
             movieTitle = model.title,
             movieName = model.name,
             posterPath = model.posterPath,
-            profilePath = model.profile_path,
+            profilePath = model.profilePath,
             voteAverage = model.voteAverage,
             isBookMarked = false
         )

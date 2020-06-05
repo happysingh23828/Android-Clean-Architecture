@@ -9,7 +9,7 @@ class CrewMapper @Inject constructor() : Mapper<CrewEntity, Crew> {
     override fun mapFromEntity(type: CrewEntity): Crew {
         return Crew(
             id = type.id,
-            profile_path = type.profile_path,
+            profilePath = type.profilePath,
             name = type.name
         )
     }
@@ -17,7 +17,7 @@ class CrewMapper @Inject constructor() : Mapper<CrewEntity, Crew> {
     override fun mapToEntity(type: Crew): CrewEntity {
         return CrewEntity(
             id = type.id,
-            profile_path = type.profile_path,
+            profilePath = type.profilePath,
             name = type.name
         )
     }

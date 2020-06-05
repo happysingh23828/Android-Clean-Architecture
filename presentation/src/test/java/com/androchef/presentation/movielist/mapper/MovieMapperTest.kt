@@ -35,10 +35,10 @@ class MovieMapperTest {
      * Helpers Methods
      */
     private fun assertMovieMapDataEqual(movieView: MovieView, movie: Movie) {
-        assertEquals(movieView.profilePath, MovieMapper.PROFILE_URL_PREFIX.plus(movie.poster_path))
+        assertEquals(movieView.profilePath, MovieMapper.PROFILE_URL_PREFIX.plus(movie.posterPath))
         assertEquals(movieView.id, movie.id)
         assertEquals(movieView.isBookMarked, movie.isBookMarked)
-        assertEquals(movieView.voteAverage, movie.vote_average)
-        assertEquals(movieView.movieName, movie.title ?: movie.original_title)
+        assertEquals(movieView.voteAverage, movie.voteAverage)
+        assertEquals(movieView.movieName, movie.title ?: movie.originalTitle)
     }
 }

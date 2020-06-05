@@ -36,9 +36,11 @@ object MovieServiceFactory {
         return OkHttpClient.Builder()
             .addInterceptor(logging)
             .dns(Dns.SYSTEM)
-            .connectTimeout(60, TimeUnit.SECONDS)
-            .readTimeout(60, TimeUnit.SECONDS)
+            .connectTimeout(OK_HTTP_TIMEOUT, TimeUnit.SECONDS)
+            .readTimeout(OK_HTTP_TIMEOUT, TimeUnit.SECONDS)
             .addInterceptor(AuthorizationInterceptor(apiKey))
             .build()
     }
+
+    private const val OK_HTTP_TIMEOUT = 60L
 }

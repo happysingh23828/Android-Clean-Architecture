@@ -40,20 +40,20 @@ object PresentationMovieFactory {
             id = DataFactory.getRandomLong(),
             name = DataFactory.getRandomString(),
             title = DataFactory.getRandomString(),
-            vote_average = DataFactory.getRandomDouble(),
-            profile_path = DataFactory.getRandomString(),
-            poster_path = DataFactory.getRandomString(),
+            voteAverage = DataFactory.getRandomDouble(),
+            profilePath = DataFactory.getRandomString(),
+            posterPath = DataFactory.getRandomString(),
             popularity = DataFactory.getRandomDouble(),
-            backdrop_path = DataFactory.getRandomString(),
-            first_air_date = DataFactory.getRandomString(),
-            genre_ids = listOf(DataFactory.getRandomInt(), DataFactory.getRandomInt()),
-            known_for_department = DataFactory.getRandomString(),
-            original_language = DataFactory.getRandomString(),
-            original_title = DataFactory.getRandomString(),
+            backdropPath = DataFactory.getRandomString(),
+            firstAirDate = DataFactory.getRandomString(),
+            genreIds = listOf(DataFactory.getRandomInt(), DataFactory.getRandomInt()),
+            knownForDepartment = DataFactory.getRandomString(),
+            originalLanguage = DataFactory.getRandomString(),
+            originalTitle = DataFactory.getRandomString(),
             overview = DataFactory.getRandomString(),
-            release_date = DataFactory.getRandomString(),
+            releaseDate = DataFactory.getRandomString(),
             video = DataFactory.getRandomBoolean(),
-            vote_count = DataFactory.getRandomInt()
+            voteCount = DataFactory.getRandomInt()
         )
     }
 }

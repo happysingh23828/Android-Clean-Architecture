@@ -9,7 +9,7 @@ class CrewResponseEntityMapper @Inject constructor() : EntityMapper<CrewModel, C
     override fun mapFromModel(model: CrewModel): CrewEntity {
         return CrewEntity(
             id = model.id,
-            profile_path = model.profilePath,
+            profilePath = model.profilePath,
             name = model.name
         )
     }

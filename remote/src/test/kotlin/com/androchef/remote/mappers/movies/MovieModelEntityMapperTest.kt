@@ -36,7 +36,7 @@ class MovieModelEntityMapperTest {
      */
     private fun assertMapMovieDataEquals(movieModel: MovieModel, movieEntity: MovieEntity) {
         assertEquals(movieEntity.isBookMarked, false)
-        assertEquals(movieEntity.profilePath, movieModel.profile_path)
+        assertEquals(movieEntity.profilePath, movieModel.profilePath)
         assertEquals(movieEntity.voteAverage, movieModel.voteAverage)
         assertEquals(movieEntity.movieTitle, movieModel.title)
         assertEquals(movieEntity.movieName, movieModel.name)

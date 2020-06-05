@@ -10,7 +10,7 @@ class CastResponseEntityMapper @Inject constructor() : EntityMapper<CastModel, C
         return CastEntity(
             character = model.character,
             name = model.name,
-            profile_path = model.profilePath,
+            profilePath = model.profilePath,
             id = model.id,
             order = model.id
         )

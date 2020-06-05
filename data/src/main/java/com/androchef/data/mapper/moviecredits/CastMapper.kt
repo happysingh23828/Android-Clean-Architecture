@@ -10,7 +10,7 @@ class CastMapper @Inject constructor() : Mapper<CastEntity, Cast> {
         return Cast(
             character = type.character,
             name = type.name,
-            profile_path = type.profile_path,
+            profilePath = type.profilePath,
             id = type.id,
             order = type.id
         )
@@ -20,7 +20,7 @@ class CastMapper @Inject constructor() : Mapper<CastEntity, Cast> {
         return CastEntity(
             character = type.character,
             name = type.name,
-            profile_path = type.profile_path,
+            profilePath = type.profilePath,
             id = type.id,
             order = type.id
         )
