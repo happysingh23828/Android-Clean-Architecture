@@ -12,10 +12,7 @@ object Dependencies {
             "org.jetbrains.kotlin:kotlin-gradle-plugin:${Version.kotlinVersion}"
         const val dokkaPluginClasspath =
             "org.jetbrains.dokka:dokka-gradle-plugin:${Version.dokkaVeresion}"
-        const val detekt =
-            "io.gitlab.arturbosch.detekt:detekt-gradle-plugin:${Version.detektVersion}"
         const val jacoco = "com.vanniktech:gradle-android-junit-jacoco-plugin:${Version.jacoco}"
-        const val ktLint = "com.pinterest:ktlint:${Version.ktLint}"
     }
 
     object Plugins {
@@ -29,6 +26,11 @@ object Dependencies {
         const val KOTLIN_ANDROID_EXTENSIONS = "kotlin-android-extensions"
         const val DETEKT = "io.gitlab.arturbosch.detekt"
         const val JACOCO = "com.vanniktech.android.junit.jacoco"
+    }
+
+    object Lint {
+        const val detekt = "io.gitlab.arturbosch.detekt:detekt-cli:${Version.detektVersion}"
+        const val ktLint = "com.pinterest:ktlint:${Version.ktLint}"
     }
 
     object Module {

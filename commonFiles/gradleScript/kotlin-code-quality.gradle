@@ -6,13 +6,13 @@ configurations {
 }
 
 dependencies {
-    detekt Dependencies.ClassPaths.detekt
+    detekt Dependencies.Lint.detekt
 }
 
 def output = new File(project.buildDir, "reports/detekt/")
 
 task detekt(type: JavaExec, group: "verification", description: "Runs detekt.") {
-    def configFile = file("../code_quality_tools/detekt.yml")
+    def configFile = project.rootProject.file("commonFiles/gradleScript/code-quality-tools/detekt.yml")
     inputs.files(project.fileTree(dir: "src", include: "**/*.kt"), configFile)
     outputs.dir(output.toString())
     main = "io.gitlab.arturbosch.detekt.cli.Main"
@@ -32,7 +32,7 @@ configurations {
 //ktlint implementation
 
 dependencies {
-    ktlint Dependencies.ClassPaths.ktLint
+    ktlint Dependencies.Lint.ktLint
 }
 
 def outputDir = "${project.buildDir}/reports/ktlint/"

@@ -49,5 +49,5 @@ object Version {
     const val stetho = "1.5.1"
 
     //plugins versions
-    const val detektVersion = "1.8.0"
+    const val detektVersion = "1.9.1"
 }
