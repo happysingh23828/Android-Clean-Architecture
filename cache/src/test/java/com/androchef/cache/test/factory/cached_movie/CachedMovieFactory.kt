@@ -32,7 +32,6 @@ object CachedMovieFactory {
         return listOfMovieEntities
     }
 
-
     fun generateCachedMovie(): CachedMovie {
         return CachedMovie(
             movieId = DataFactory.getRandomLong(),

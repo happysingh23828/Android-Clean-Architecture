@@ -1,0 +1,64 @@
+import dependencies.Dependencies
+
+//detekt implementation
+configurations {
+    detekt
+}
+
+dependencies {
+    detekt Dependencies.Lint.detekt
+}
+
+def output = new File(project.buildDir, "reports/detekt/")
+
+task detekt(type: JavaExec, group: "verification", description: "Runs detekt.") {
+    def configFile = project.rootProject.file("commonFiles/gradleScript/code-quality-tools/detekt.yml")
+    inputs.files(project.fileTree(dir: "src", include: "**/*.kt"), configFile)
+    outputs.dir(output.toString())
+    main = "io.gitlab.arturbosch.detekt.cli.Main"
+    classpath = project.configurations.detekt
+    args = ["--config", configFile, "--input", project.file("."), "--report", "plain:$output/plain.txt,xml:$output/checkstyle.xml,html:$output/report.html"]
+}
+
+// We don't want them to be checked too since this is a demo and it's supposed to fail here.
+// check.dependsOn "detekt"
+
+// ktlint.
+
+configurations {
+    ktlint
+}
+
+//ktlint implementation
+
+dependencies {
+    ktlint Dependencies.Lint.ktLint
+}
+
+def outputDir = "${project.buildDir}/reports/ktlint/"
+
+task ktlint(type: JavaExec, group: "verification", description: "Runs ktlint.") {
+    inputs.files(fileTree(dir: "src", include: "**/*.kt"),
+            fileTree(dir: ".", include: "**/.editorconfig"))
+    outputs.dir(outputDir)
+    main = "com.pinterest.ktlint.Main"
+    classpath = configurations.ktlint
+    args = ["--reporter=plain",
+            "--reporter=checkstyle,output=${outputDir}ktlint-checkstyle-report.xml",
+            "src/**/*.kt"]
+}
+
+task ktlintFormat(type: JavaExec, group: "formatting") {
+    inputs.files(
+            fileTree(dir: "src", include: "**/*.kt"),
+            fileTree(dir: ".", include: "**/.editorconfig")
+    )
+    outputs.upToDateWhen { true }
+    description = "Runs ktlint and autoformats your code."
+    main = "com.pinterest.ktlint.Main"
+    classpath = configurations.ktlint
+    args = ["-F", "src/**/*.kt"]
+}
+
+// We don't want them to be checked too since this is a demo and it's supposed to fail here.
+// check.dependsOn "ktlint"

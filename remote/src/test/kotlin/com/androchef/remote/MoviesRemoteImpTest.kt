@@ -27,7 +27,6 @@ class MoviesRemoteImpTest {
 
     private lateinit var movieRemoteImp: MoviesRemoteImp
 
-
     @Before
     fun setUp() {
         movieModelEntityMapper = MovieModelEntityMapper()
@@ -41,25 +40,25 @@ class MoviesRemoteImpTest {
 
     @Test
     fun getPopularMovies_Completes() {
-        //Arrange
+        // Arrange
         stubPopularMovies(Single.just(RemoteMovieFactory.generateMovieListModel(6, 0)))
 
-        //Act
+        // Act
         val testObserver = movieRemoteImp.getPopularMovies().test()
 
-        //Assert
+        // Assert
         testObserver.assertComplete()
     }
 
     @Test
     fun getPopularMovies_returnsData() {
-        //Arrange
+        // Arrange
         stubPopularMovies(Single.just(RemoteMovieFactory.generateMovieListModel(6, 0)))
 
-        //Act
+        // Act
         val testObserver = movieRemoteImp.getPopularMovies().test()
 
-        //Assert
+        // Assert
         assert(testObserver.values()[0].size == 6)
     }
 

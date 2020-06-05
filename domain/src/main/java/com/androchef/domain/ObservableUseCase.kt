@@ -8,7 +8,7 @@ import io.reactivex.observers.DisposableObserver
 import io.reactivex.schedulers.Schedulers
 
 abstract class ObservableUseCase<T, in Params> constructor(
-        private val postExecutionThread: PostExecutionThread
+    private val postExecutionThread: PostExecutionThread
 ) {
 
     private val disposables = CompositeDisposable()
@@ -29,5 +29,4 @@ abstract class ObservableUseCase<T, in Params> constructor(
     fun clear() {
         if (!disposables.isDisposed) disposables.dispose()
     }
-
 }

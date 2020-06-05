@@ -10,7 +10,7 @@ object Version {
     const val versionCode = 1
     const val versionName = "1.0"
 
-    //Libraries
+    // Libraries
     const val supportLib = "28.0.0"
     const val recyclerView = "1.0.0"
     const val androidx = "1.0.0"
@@ -23,9 +23,11 @@ object Version {
     const val lifecycleVersion = "2.0.0"
     const val javaxInject = "1"
     const val javaxAnnotation = "1.0"
+    const val jacoco = "0.16.0"
     const val parcelerVersion = "1.1.12"
     const val picasso = "2.71828"
     const val gradleVersion = "3.5.0"
+    const val ktLint = "0.35.0"
     const val kotlinVersion = "1.3.50"
     const val dokkaVeresion = "0.9.18"
     const val espresso = "3.1.0"
@@ -45,4 +47,7 @@ object Version {
     const val rxRelay = "2.0.0"
     const val rxBinding = "3.0.0"
     const val stetho = "1.5.1"
+
+    // plugins versions
+    const val detektVersion = "1.9.1"
 }

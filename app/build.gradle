@@ -36,10 +36,6 @@ android {
         enabled true
     }
 
-    kapt {
-        generateStubs = true
-    }
-
     testOptions {
         unitTests.returnDefaultValues = true
     }

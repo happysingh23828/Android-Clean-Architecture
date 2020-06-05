@@ -11,7 +11,7 @@ class UIModule {
 
     @Provides
     @Singleton
-    fun providePostExecutionThread(uiThread: UiThread) : PostExecutionThread {
+    fun providePostExecutionThread(uiThread: UiThread): PostExecutionThread {
         return uiThread
     }
 }

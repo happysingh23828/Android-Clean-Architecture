@@ -12,7 +12,7 @@ import org.robolectric.RobolectricTestRunner
 import org.robolectric.RuntimeEnvironment
 import org.robolectric.annotation.Config
 
-@Config(manifest= Config.NONE)
+@Config(manifest = Config.NONE)
 @RunWith(RobolectricTestRunner::class)
 class MoviesCacheImpTest {
 
@@ -39,139 +39,139 @@ class MoviesCacheImpTest {
 
     @Test
     fun saveMovies_completes() {
-        //Arrange
+        // Arrange
         val movieEntities = CachedMovieFactory.generateListOfMovieEntities(7)
 
-        //Act
+        // Act
         val testObserver = moviesCacheImp.saveMovies(movieEntities).test()
 
-        //Assert
+        // Assert
         testObserver.assertComplete()
     }
 
     @Test
     fun saveMovies_dataSaved() {
-        //Arrange
+        // Arrange
         val movieEntities = CachedMovieFactory.generateListOfMovieEntities(7)
 
-        //Act
+        // Act
         moviesCacheImp.saveMovies(movieEntities).test()
 
-        //Assert
+        // Assert
         val cachedMovies = movieDatabase.cachedMovieDao().getMovies()
         assert(cachedMovies.size == movieEntities.size)
     }
 
     @Test
     fun getPopularMovies_returnsData() {
-        //Arrange
+        // Arrange
         val movieEntities = CachedMovieFactory.generateListOfMovieEntities(7)
         moviesCacheImp.saveMovies(movieEntities).test()
 
-        //Act
+        // Act
         val testObserver = moviesCacheImp.getPopularMovies().test()
 
-        //Assert
+        // Assert
         assert(testObserver.values()[0].size == movieEntities.size)
     }
 
     @Test
     fun getPopularMovies_completes() {
-        //Arrange
+        // Arrange
         val movieEntities = CachedMovieFactory.generateListOfMovieEntities(7)
         moviesCacheImp.saveMovies(movieEntities).test()
 
-        //Act
+        // Act
         val testObserver = moviesCacheImp.getPopularMovies().test()
 
-        //Assert
+        // Assert
         testObserver.assertComplete()
     }
 
     @Test
-    fun getBookMarkedMovies_completes(){
-        //Arrange
+    fun getBookMarkedMovies_completes() {
+        // Arrange
         val movieEntities = CachedMovieFactory.generateListOfMovieEntitiesWithNotBookmark(7)
         moviesCacheImp.saveMovies(movieEntities).test()
 
-        //Act
+        // Act
         val testObserver = moviesCacheImp.getBookMarkedMovies().test()
 
-        //Assert
+        // Assert
         testObserver.assertComplete()
     }
 
     @Test
-    fun getBookMarkedMovies_returnData(){
-        //Arrange
+    fun getBookMarkedMovies_returnData() {
+        // Arrange
         val movieEntities = CachedMovieFactory.generateListOfMovieEntitiesWithNotBookmark(7)
-        //Only bookmarking one movie
+        // Only bookmarking one movie
         movieEntities[0].isBookMarked = true
         moviesCacheImp.saveMovies(movieEntities).test()
 
-        //Act
+        // Act
         val testObserver = moviesCacheImp.getBookMarkedMovies().test()
 
-        //Assert
+        // Assert
         assert(testObserver.values()[0].size == 1)
     }
 
     @Test
     fun setMovieBookmarked_completes() {
-        //Arrange
+        // Arrange
         val movieEntity = CachedMovieFactory.generateMovieEntity()
         movieEntity.isBookMarked = false
         moviesCacheImp.saveMovies(listOf(movieEntity))
 
-        //Act
+        // Act
         val testObserver = moviesCacheImp.setMovieBookmarked(movieEntity.id!!).test()
 
-        //Assert
+        // Assert
         testObserver.assertComplete()
     }
 
     @Test
     fun setUnMovieBookmarked_completes() {
-        //Arrange
+        // Arrange
         val movieEntity = CachedMovieFactory.generateMovieEntity()
         movieEntity.isBookMarked = true
         moviesCacheImp.saveMovies(listOf(movieEntity))
 
-        //Act
+        // Act
         val testObserver = moviesCacheImp.setMovieUnBookMarked(movieEntity.id!!).test()
 
-        //Assert
+        // Assert
         testObserver.assertComplete()
     }
 
     @Test
     fun isCached_responseTrue() {
-        //Arrange
+        // Arrange
         val movieEntities = CachedMovieFactory.generateListOfMovieEntitiesWithNotBookmark(7)
         moviesCacheImp.saveMovies(movieEntities).test()
 
-        //Act
+        // Act
         val testObserver = moviesCacheImp.isCached().test()
 
-        //Assert
+        // Assert
         testObserver.assertValue(true)
     }
 
     @Test
     fun isCached_responseFalse() {
-        //Arrange
-        //No arrange needed.
+        // Arrange
+        // No arrange needed.
 
-        //Act
+        // Act
         val testObserver = moviesCacheImp.isCached().test()
 
-        //Assert
+        // Assert
         testObserver.assertValue(false)
     }
 
     @Test
     fun isExpired_responseTrue() {
-        //Arrange
+        // Arrange
         val currentTimeInMillis = System.currentTimeMillis()
         val expirationTime = MoviesCacheImp.EXPIRATION_TIME
 
@@ -179,33 +179,29 @@ class MoviesCacheImpTest {
         moviesCacheImp.saveMovies(movieEntities).test()
         moviesCacheImp.setLastCacheTime(currentTimeInMillis.minus(expirationTime))
 
+        // Act
+        val isExpired = moviesCacheImp.isExpired()
 
-        //Act
-        val isExpired =  moviesCacheImp.isExpired()
-
-        //Assert
+        // Assert
         assert(isExpired)
     }
 
     @Test
     fun isExpired_responseFalse() {
-        //Arrange
+        // Arrange
         val movieEntities = CachedMovieFactory.generateListOfMovieEntitiesWithNotBookmark(7)
         moviesCacheImp.saveMovies(movieEntities).test()
         moviesCacheImp.setLastCacheTime(System.currentTimeMillis())
 
-        //Act
-        val isExpired =  moviesCacheImp.isExpired()
+        // Act
+        val isExpired = moviesCacheImp.isExpired()
 
-        //Assert
+        // Assert
         assert(isExpired.not())
     }
-
-
 
     @After
     fun closeDb() {
         movieDatabase.close()
     }
-
 }

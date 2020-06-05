@@ -5,8 +5,6 @@ import com.androchef.domain.executor.ThreadExecutor
 import io.reactivex.Flowable
 import io.reactivex.schedulers.Schedulers
 
-
-
 abstract class FlowableUseCase<T, in Params> constructor(
     private val threadExecutor: ThreadExecutor,
     private val postExecutionThread: PostExecutionThread
@@ -19,5 +17,4 @@ abstract class FlowableUseCase<T, in Params> constructor(
                 .subscribeOn(Schedulers.from(threadExecutor))
                 .observeOn(postExecutionThread.scheduler)
     }
-
 }

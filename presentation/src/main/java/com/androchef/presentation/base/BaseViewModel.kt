@@ -11,7 +11,7 @@ abstract class BaseViewModel<T> : ViewModel() {
 
     abstract val stateObservable: MutableLiveData<T>
 
-    protected open fun publishState(state: T){
+    protected open fun publishState(state: T) {
         stateObservable.postValue(state)
     }
 
@@ -20,10 +20,9 @@ abstract class BaseViewModel<T> : ViewModel() {
     }
 
     private fun clearDisposables() {
-        if(disposables.isDisposed.not())
+        if (disposables.isDisposed.not())
             disposables.clear()
     }
-
 
     @CallSuper
     override fun onCleared() {

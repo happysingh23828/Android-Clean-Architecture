@@ -1,6 +1,6 @@
 package com.androchef.domain.factory
 
-import java.util.*
+import java.util.UUID
 import kotlin.random.Random
 
 object DataFactory {
@@ -21,7 +21,7 @@ object DataFactory {
         return Random.nextDouble()
     }
 
-    fun getRandomBoolean() : Boolean {
+    fun getRandomBoolean(): Boolean {
         return Random.nextBoolean()
     }
 }

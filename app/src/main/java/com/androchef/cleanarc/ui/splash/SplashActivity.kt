@@ -14,6 +14,10 @@ class SplashActivity : AppCompatActivity() {
         Handler().postDelayed({
             MovieListActivity.start(this)
             finish()
-        },2000)
+        }, DELAY_IN_IN_TRANSITION)
+    }
+
+    companion object {
+        private const val DELAY_IN_IN_TRANSITION = 2000L
     }
 }

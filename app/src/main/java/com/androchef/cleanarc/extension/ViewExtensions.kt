@@ -6,7 +6,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.Group
 import androidx.fragment.app.Fragment
 
-
 fun View.visible(): View {
     this.visibility = View.VISIBLE
     if (this is Group) {

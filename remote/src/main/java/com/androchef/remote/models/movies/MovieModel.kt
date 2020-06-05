@@ -2,7 +2,7 @@ package com.androchef.remote.models.movies
 
 import com.google.gson.annotations.SerializedName
 
-class MovieModel (
+class MovieModel(
 
     @SerializedName("adult")
     var adult: Boolean = false,
@@ -38,16 +38,16 @@ class MovieModel (
     var releaseDate: String? = "",
 
     @SerializedName("first_air_date")
-    var first_air_date: String? = "",
+    var firstAirDate: String? = "",
 
     @SerializedName("title")
     var title: String? = "",
 
     @SerializedName("known_for_department")
-    var known_for_department: String = "",
+    var knownForDepartment: String = "",
 
     @SerializedName("profile_path")
-    var profile_path: String = "",
+    var profilePath: String = "",
 
     @SerializedName("video")
     var video: Boolean = false,

@@ -1,6 +1,5 @@
 package com.androchef.remote.models.movies
 
-import com.androchef.remote.models.movies.MovieModel
 import com.google.gson.annotations.SerializedName
 
 class MovieListModel(

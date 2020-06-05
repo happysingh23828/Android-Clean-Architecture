@@ -83,6 +83,6 @@ class MoviesCacheImp @Inject constructor(
         /**
          * Expiration time set to 5 minutes
          */
-         const val EXPIRATION_TIME = (60 * 5 * 1000).toLong()
+        const val EXPIRATION_TIME = (60 * 5 * 1000).toLong()
     }
 }

@@ -3,7 +3,7 @@ package com.androchef.remote.mappers.movies
 import com.androchef.data.models.MovieEntity
 import com.androchef.remote.factory.movies.RemoteMovieFactory
 import com.androchef.remote.models.movies.MovieModel
-import org.junit.Assert.*
+import org.junit.Assert.assertEquals
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -21,26 +21,25 @@ class MovieModelEntityMapperTest {
 
     @Test
     fun mapFromModel() {
-        //Arrange
+        // Arrange
         val movieModel = RemoteMovieFactory.generateMovieModel()
 
-        //Act
+        // Act
         val movieEntity = movieModelEntityMapper.mapFromModel(movieModel)
 
-        //Assert
-        assertMapMovieDataEquals(movieModel,movieEntity)
+        // Assert
+        assertMapMovieDataEquals(movieModel, movieEntity)
     }
 
     /**
      * Helper Methods
      */
-    private fun assertMapMovieDataEquals(movieModel: MovieModel,movieEntity: MovieEntity){
-        assertEquals(movieEntity.isBookMarked,false)
-        assertEquals(movieEntity.profilePath,movieModel.profile_path)
-        assertEquals(movieEntity.voteAverage,movieModel.voteAverage)
-        assertEquals(movieEntity.movieTitle,movieModel.title)
-        assertEquals(movieEntity.movieName,movieModel.name)
-        assertEquals(movieEntity.posterPath,movieModel.posterPath)
-
+    private fun assertMapMovieDataEquals(movieModel: MovieModel, movieEntity: MovieEntity) {
+        assertEquals(movieEntity.isBookMarked, false)
+        assertEquals(movieEntity.profilePath, movieModel.profilePath)
+        assertEquals(movieEntity.voteAverage, movieModel.voteAverage)
+        assertEquals(movieEntity.movieTitle, movieModel.title)
+        assertEquals(movieEntity.movieName, movieModel.name)
+        assertEquals(movieEntity.posterPath, movieModel.posterPath)
     }
 }

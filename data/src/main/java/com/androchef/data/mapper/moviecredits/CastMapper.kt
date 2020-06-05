@@ -5,12 +5,12 @@ import com.androchef.data.models.CastEntity
 import com.androchef.domain.models.movies.Cast
 import javax.inject.Inject
 
-class CastMapper @Inject constructor(): Mapper<CastEntity, Cast> {
+class CastMapper @Inject constructor() : Mapper<CastEntity, Cast> {
     override fun mapFromEntity(type: CastEntity): Cast {
         return Cast(
             character = type.character,
             name = type.name,
-            profile_path = type.profile_path,
+            profilePath = type.profilePath,
             id = type.id,
             order = type.id
         )
@@ -20,7 +20,7 @@ class CastMapper @Inject constructor(): Mapper<CastEntity, Cast> {
         return CastEntity(
             character = type.character,
             name = type.name,
-            profile_path = type.profile_path,
+            profilePath = type.profilePath,
             id = type.id,
             order = type.id
         )

@@ -29,69 +29,68 @@ class MovieCacheDataStoreTest {
 
     @Test
     fun movieCacheDataStore_saveMovies_completes() {
-        //Arrange
+        // Arrange
         stubMovieCacheSaveMovies(Completable.complete())
 
-        //Act
+        // Act
         val testObserver =
             movieCacheDataStore.saveMovies(MovieEntityFactory.generateDummyMoviesEntities(3)).test()
 
-        //Assert
+        // Assert
         testObserver.assertComplete()
     }
 
     @Test
     fun movieCacheDataStore_setMovieBookmarked() {
-        //Arrange
+        // Arrange
         val movieId = DataFactory.getRandomLong()
         stubMovieCacheSetMovieBookMarked(movieId, Completable.complete())
 
-        //Act
+        // Act
         val testObserver = movieCacheDataStore.setMovieBookmarked(movieId).test()
 
-        //Assert
+        // Assert
         testObserver.assertComplete()
     }
 
     @Test
     fun movieCacheDataStore_setMovieUnBookmarked() {
-        //Arrange
+        // Arrange
         val movieId = DataFactory.getRandomLong()
         stubMovieCacheSetMovieUnBookMarked(movieId, Completable.complete())
 
-        //Act
+        // Act
         val testObserver = movieCacheDataStore.setMovieUnBookMarked(movieId).test()
 
-        //Assert
+        // Assert
         testObserver.assertComplete()
     }
 
     @Test
     fun movieCacheDataStore_getPopularMovies_returnsData() {
-        //Arrange
+        // Arrange
         val movieEntityList = MovieEntityFactory.generateDummyMoviesEntities(5)
         stubMovieCacheGetPopularMovies(Single.just(movieEntityList))
 
-        //Act
+        // Act
         val testObserver = movieCacheDataStore.getPopularMovies().test()
 
-        //Assert
+        // Assert
         testObserver.assertValue(movieEntityList)
     }
 
     @Test
     fun movieCacheDataStore_getBookMarkedMovies_returnsData() {
-        //Arrange
+        // Arrange
         val movieEntityLIst = MovieEntityFactory.generateDummyMoviesEntities(5)
         stubMovieCacheGetBookMarkedMovies(Single.just(movieEntityLIst))
 
-        //Act
+        // Act
         val testObserver = movieCacheDataStore.getBookMarkedMovies().test()
 
-        //Assert
+        // Assert
         testObserver.assertValue(movieEntityLIst)
     }
-
 
     /**
      * Stub Helper Methods
@@ -120,6 +119,4 @@ class MovieCacheDataStoreTest {
         `when`(movieCache.setMovieUnBookMarked(movieId))
             .thenReturn(completable)
     }
-
-
 }

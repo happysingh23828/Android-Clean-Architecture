@@ -10,10 +10,10 @@ class MovieMapper @Inject constructor() : Mapper<MovieView, Movie> {
     override fun mapToView(type: Movie): MovieView {
         return MovieView(
             id = type.id,
-            profilePath = PROFILE_URL_PREFIX.plus(type.poster_path),
-            movieName = type.title ?: type.original_title,
+            profilePath = PROFILE_URL_PREFIX.plus(type.posterPath),
+            movieName = type.title ?: type.originalTitle,
             isBookMarked = type.isBookMarked,
-            voteAverage = type.vote_average
+            voteAverage = type.voteAverage
         )
     }
 

@@ -1,6 +1,6 @@
 package com.androchef.cache.test.factory
 
-import java.util.*
+import java.util.UUID
 import kotlin.random.Random
 
 object DataFactory {

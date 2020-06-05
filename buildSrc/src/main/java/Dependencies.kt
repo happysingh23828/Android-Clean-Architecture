@@ -6,6 +6,32 @@ object Dependencies {
     const val dependency = "./gradleScript/dependencies.gradle"
     const val common = "${path}common.gradle"
 
+    object ClassPaths {
+        const val gradleClasspath = "com.android.tools.build:gradle:${Version.gradleVersion}"
+        const val kotlinGradlePluginClasspath =
+            "org.jetbrains.kotlin:kotlin-gradle-plugin:${Version.kotlinVersion}"
+        const val dokkaPluginClasspath =
+            "org.jetbrains.dokka:dokka-gradle-plugin:${Version.dokkaVeresion}"
+        const val jacoco = "com.vanniktech:gradle-android-junit-jacoco-plugin:${Version.jacoco}"
+    }
+
+    object Plugins {
+        const val ANDROID_APPLICATION = "com.android.application"
+        const val ANDROID_LIBRARY = "com.android.library"
+        const val GOOGLE_SERVICES = "com.google.gms.google-services"
+        const val FIREBASE_PREF = "com.google.firebase.firebase-perf"
+        const val FABRIC_IO = "io.fabric"
+        const val KOTLIN_ANDROID = "kotlin-android"
+        const val KOTLIN_KAPT = "kotlin-kapt"
+        const val KOTLIN_ANDROID_EXTENSIONS = "kotlin-android-extensions"
+        const val DETEKT = "io.gitlab.arturbosch.detekt"
+        const val JACOCO = "com.vanniktech.android.junit.jacoco"
+    }
+
+    object Lint {
+        const val detekt = "io.gitlab.arturbosch.detekt:detekt-cli:${Version.detektVersion}"
+        const val ktLint = "com.pinterest:ktlint:${Version.ktLint}"
+    }
 
     object Module {
         const val data = ":data"
@@ -23,6 +49,7 @@ object Dependencies {
     object Lifecycle {
         const val extension = "android.arch.lifecycle:extensions:${Version.lifecycle}"
         const val annotation_compliler = "android.arch.lifecycle:compiler:${Version.lifecycle}"
+
         // ViewModel and LiveData
         const val lifeCycleExtension =
             "androidx.lifecycle:lifecycle-extensions:${Version.lifecycleVersion}"
@@ -33,7 +60,6 @@ object Dependencies {
         const val annotationProcessor = "androidx.annotation:annotation:1.0.0"
         const val annotationCompiler = "com.github.bumptech.glide:compiler:${Version.glide}"
     }
-
 
     object Picasso {
         const val picasso = "com.squareup.picasso:picasso:${Version.picasso}"
@@ -108,7 +134,6 @@ object Dependencies {
         const val roboElectric = "org.robolectric:robolectric:${Version.roboElectric}"
     }
 
-
     object Support {
         const val supportV4 = "com.android.support:support-v4:${Version.supportLib}"
     }
@@ -117,12 +142,4 @@ object Dependencies {
     const val javaxjsr250 = "javax.annotation:jsr250-api:${Version.javaxAnnotation}"
     const val parceler = "org.parceler:parceler-api:${Version.parcelerVersion}"
     const val parcelerProcessor = "org.parceler:parceler-api:${Version.parcelerVersion}"
-
-    object ClassPaths {
-        const val gradleClasspath = "com.android.tools.build:gradle:${Version.gradleVersion}"
-        const val kotlinGradlePluginClasspath =
-            "org.jetbrains.kotlin:kotlin-gradle-plugin:${Version.kotlinVersion}"
-        const val dokkaPluginClasspath =
-            "org.jetbrains.dokka:dokka-gradle-plugin:${Version.dokkaVeresion}"
-    }
 }

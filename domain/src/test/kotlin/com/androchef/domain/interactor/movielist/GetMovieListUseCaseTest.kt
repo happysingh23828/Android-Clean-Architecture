@@ -34,45 +34,44 @@ class GetMovieListUseCaseTest {
             GetMovieListUseCase(movieRepository, threadExecutor, postExecutionThread)
     }
 
-
     @Test
     fun buildUseCaseObservable_call_repository() {
-        //Arrange
-        //No Arrangement for this test case
+        // Arrange
+        // No Arrangement for this test case
 
-        //Act
+        // Act
         getMovieListUseCase.buildUseCaseObservable(null)
 
-        //Assert
+        // Assert
         verify(movieRepository).getPopularMovies()
     }
 
     @Test
     fun buildUseCaseObservable_completes() {
-        //Arrange
+        // Arrange
         stubMovieRepositoryGetMoviesList(Single.just(MoviesFactory.generateDummyMovieList(3)))
 
-        //Act
+        // Act
         val testObserver = getMovieListUseCase.buildUseCaseObservable(null).test()
 
-        //Assert
+        // Assert
         testObserver.assertComplete()
     }
 
     @Test
     fun buildUseCaseObservable_returnsData() {
-        //Arrange
+        // Arrange
         val movieList = MoviesFactory.generateDummyMovieList(4)
         stubMovieRepositoryGetMoviesList(Single.just(movieList))
 
-        //Act
+        // Act
         val testObserver = getMovieListUseCase.buildUseCaseObservable(null).test()
 
-        //Assert
+        // Assert
         testObserver.assertValue(movieList)
     }
 
-    private fun stubMovieRepositoryGetMoviesList(single : Single<List<Movie>> ) {
+    private fun stubMovieRepositoryGetMoviesList(single: Single<List<Movie>>) {
         `when`(movieRepository.getPopularMovies())
             .thenReturn(single)
     }
