@@ -3,6 +3,7 @@
 </p>
 
 # Android Clean Architecture 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/3ae0843cfd584f0582162c3c97000fd0)](https://app.codacy.com/manual/happysingh23828/Android-Clean-Architecture?utm_source=github.com&utm_medium=referral&utm_content=happysingh23828/Android-Clean-Architecture&utm_campaign=Badge_Grade_Settings)
 [![platform](https://img.shields.io/badge/platform-Android-yellow.svg)](https://www.android.com)
 ![Android CI](https://github.com/happysingh23828/Android-Clean-Architecture/workflows/Android%20CI/badge.svg)
 [![GitHub license](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
