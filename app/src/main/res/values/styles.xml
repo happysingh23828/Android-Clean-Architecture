@@ -11,6 +11,7 @@
     </style>
 
     <style name="SplashTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:background">@color/colorPrimary</item>
         <item name="android:windowFullscreen">true</item>
     </style>
 
