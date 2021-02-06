@@ -52,6 +52,9 @@ dependencies {
     //Picasso
     implementation Dependencies.Picasso.picasso
 
+    //Material Design
+    implementation Dependencies.AndroidX.materialDesign
+
     //Glide
     implementation Dependencies.Glide.glide
     kapt Dependencies.Glide.annotationProcessor
