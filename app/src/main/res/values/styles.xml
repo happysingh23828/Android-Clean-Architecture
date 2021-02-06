@@ -11,7 +11,7 @@
     </style>
 
     <style name="SplashTheme" parent="Theme.AppCompat.Light.NoActionBar">
-        <item name="android:background">@color/colorPrimary</item>
+        <item name="android:windowDisablePreview">true</item> // Remove blank screen before splash screen with default android theme
         <item name="android:windowFullscreen">true</item>
     </style>
 
