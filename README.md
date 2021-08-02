@@ -60,7 +60,7 @@ Clean Architecture will not be appropriate for every project, so it is down to y
 - [Mockito](http://site.mockito.org/) - Most popular mocking framework for Java/kotlin.
 - [Robolectric](http://robolectric.org/) - allows you to write unit tests and run them on a desktop JVM while still using Android API.
 - [Stetho](https://github.com/facebook/stetho) - Stetho is a debug bridge for Android applications, enabling the powerful Chrome Developer Tools and much more.
-- [Detekt](https://detekt.github.io/detekt/) - Detekt is a static analyze tool for the Kotlin language. It's open sourc.
+- [Detekt](https://detekt.github.io/detekt/) - Detekt is a static analyze tool for the Kotlin language. It's open source.
 - [Ktlint](https://github.com/pinterest/ktlint) -Ktlint is a static code analysis tool maintain by Pinterest. Linter and formatter for Kotlin code.
 
 ## - Clean Architecture
